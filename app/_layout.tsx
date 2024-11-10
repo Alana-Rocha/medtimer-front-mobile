@@ -10,13 +10,15 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { PaperProvider } from "react-native-paper";
+import { theme } from "@/constants/theme";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    GilroyRegular: require("../assets/fonts/Gilroy-Regular.ttf"),
+    GilroyBold: require("../assets/fonts/Gilroy-SemiBold.ttf"),
   });
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function RootLayout() {
   }
 
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="apresentacao" />
