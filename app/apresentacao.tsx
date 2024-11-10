@@ -1,30 +1,51 @@
-import React, { useState } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import { View, Image, StyleSheet, Animated } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 const Apresentacao = () => {
   const slides = [
     {
-      title: "Lorem Ipsum é simplesmente a melhor prática para testar.",
+      title: "Seja bem vindo(a) ao MedTimer, aqui a sua saúde é prioridade!",
       description:
-        "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja.",
+        "A sua saúde em primeiro lugar! Com o MedTimer, você nunca mais se esquecerá dos horários de seus medicamentos. Estamos aqui para ajudar você a cuidar do seu bem-estar, facilitando o acompanhamento da sua rotina de medicação.",
       image: require("../assets/images/slide1.png"),
     },
     {
-      title: "Outro título para o próximo slide.",
+      title: "Cadastre seus medicamentos",
       description:
-        "Descrição do segundo slide, que pode ser diferente do primeiro.",
+        "No MedTimer, é fácil registrar todos os medicamentos que você precisa tomar. Basta adicionar o nome, a dosagem e a frequência, e nós cuidaremos do resto! Assim, você tem um controle mais seguro e organizado de todos os seus remédios.",
       image: require("../assets/images/slide2.png"),
     },
     {
-      title: "Mais um slide para ilustrar.",
+      title: "Lembretes na hora certa!",
       description:
-        "Texto adicional para o terceiro slide, com outra imagem e descrição.",
+        "Com nossos lembretes personalizados, você receberá notificações no momento exato de cada dose. Nunca mais perca um horário importante! Deixe o MedTimer te ajudar a manter sua saúde em dia, sem complicações.",
       image: require("../assets/images/slide3.png"),
     },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    fadeAnim.setValue(0);
+    slideAnim.setValue(50);
+
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [currentSlide]);
 
   const handleNextSlide = () => {
     if (currentSlide < slides.length - 1) {
@@ -61,8 +82,16 @@ const Apresentacao = () => {
         gap: 60,
       }}
     >
-      <View style={{ gap: 15 }}>
-        <Text style={{ fontFamily: "GilroyBold", fontSize: 23 }}>
+      <Animated.View
+        style={{
+          gap: 15,
+          opacity: fadeAnim,
+          transform: [{ translateX: slideAnim }],
+        }}
+      >
+        <Text
+          style={{ fontFamily: "GilroyBold", fontSize: 25, color: "#31658B" }}
+        >
           {slides[currentSlide].title}
         </Text>
         <Text
@@ -74,11 +103,16 @@ const Apresentacao = () => {
         >
           {slides[currentSlide].description}
         </Text>
-      </View>
+      </Animated.View>
 
-      <Image
+      <Animated.Image
         source={slides[currentSlide].image}
-        style={{ width: 330, height: 320 }}
+        style={{
+          width: 330,
+          height: 320,
+          opacity: fadeAnim,
+          transform: [{ translateX: slideAnim }],
+        }}
       />
 
       <PaginationDots />

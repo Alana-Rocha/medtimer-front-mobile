@@ -24,9 +24,9 @@ export default function HomeScreen() {
         icon="google"
         mode="contained"
         buttonColor="#fff"
-        textColor="#000"
+        textColor="#31658B"
         onPress={() => router.push("/apresentacao")}
-        style={{ width: 290, borderRadius: 8, borderColor: "#000" }}
+        style={{ width: 290, borderRadius: 8, borderColor: "#000", padding: 3 }}
       >
         Entrar com o Google
       </Button>

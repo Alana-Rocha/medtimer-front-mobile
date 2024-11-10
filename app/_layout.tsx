@@ -18,7 +18,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     GilroyRegular: require("../assets/fonts/Gilroy-Regular.ttf"),
-    GilroyBold: require("../assets/fonts/Gilroy-SemiBold.ttf"),
+    GilroyBold: require("../assets/fonts/Gilroy-Bold.ttf"),
   });
 
   useEffect(() => {
