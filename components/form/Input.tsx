@@ -1,24 +1,43 @@
 import * as React from "react";
-import { TextInput } from "react-native-paper";
+import { Controller, useFormContext } from "react-hook-form";
+import { Text, View } from "react-native";
+import { TextInput, TextInputProps } from "react-native-paper";
 
 type InputProps = {
+  id: string;
   label: string;
   secureTextEntry?: boolean;
 };
 
-const Input = ({ label, secureTextEntry }: InputProps) => {
-  const [text, setText] = React.useState("");
+const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProps) => {
+  const { control } = useFormContext();
 
   return (
-    <TextInput
-      mode="outlined"
-      label={label}
-      value={text}
-      secureTextEntry={secureTextEntry}
-      outlineColor="#31658B"
-      style={{ width: 300, backgroundColor: "#E8E1C5" }}
-      activeOutlineColor="#000"
-      onChangeText={(text) => setText(text)}
+    <Controller
+      control={control}
+      name={id}
+      render={({ field, fieldState: { error, invalid } }) => (
+        <View>
+          <TextInput
+            ref={field.ref}
+            error={invalid}
+            onBlur={field.onBlur}
+            // mode="outlined"
+            label={label}
+            value={field.value}
+            secureTextEntry={secureTextEntry}
+            outlineColor="#31658B"
+            style={{ width: 300, backgroundColor: "#E8E1C5" }}
+            activeOutlineColor="#000"
+            onChangeText={field.onChange}
+          />
+          {error && (
+            <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
+              {error.message}
+            </Text>
+          )}
+        </View>
+      )}
     />
   );
 };

@@ -1,3 +1,5 @@
+import { theme } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import {
   DarkTheme,
   DefaultTheme,
@@ -7,10 +9,8 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import "react-native-reanimated";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { PaperProvider } from "react-native-paper";
-import { theme } from "@/constants/theme";
+import "react-native-reanimated";
 
 SplashScreen.preventAutoHideAsync();
 

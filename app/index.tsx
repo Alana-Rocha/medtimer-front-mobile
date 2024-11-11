@@ -1,48 +1,75 @@
-import React from "react";
-import { View, Image, Text } from "react-native";
-import { Button, Divider } from "react-native-paper";
-import { useRouter } from "expo-router";
 import Input from "@/components/form/Input";
+import { LoginForm, loginSchema } from "@/constants/schemas/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "expo-router";
+import React from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { Image, Text, View } from "react-native";
+import { Button } from "react-native-paper";
 
 export default function HomeScreen() {
   const router = useRouter();
+  const methods = useForm<LoginForm>({ resolver: zodResolver(loginSchema) });
+
+  const submit: SubmitHandler<LoginForm> = (data) => {
+    
+    console.log(data);
+  };
 
   return (
-    <View
-      style={{
-        backgroundColor: "#31658B",
-        // flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 5,
-      }}
-    >
+    <FormProvider {...methods}>
       <View
         style={{
           backgroundColor: "#31658B",
+          height: "100%",
           justifyContent: "center",
           alignItems: "center",
-          gap: 10,
+          // gap: 5,
         }}
       >
-        <Image
-          source={require("../assets/images/logo.png")}
-          style={{ width: 200, height: 200 }}
-        />
-
-        <Text
-          style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
+        <View
+          style={{
+            backgroundColor: "#31658B",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 10,
+          }}
         >
-          Faça seu Login
-        </Text>
-      </View>
+          <Image
+            source={require("../assets/images/logo.png")}
+            style={{ width: 200, height: 200 }}
+          />
+        </View>
 
-      <Input label="E-mail" />
-      <Input label="Senha" secureTextEntry={true} />
-      <Button textColor="#E8E1C5" onPress={() => router.push("/cadastro")}>
-        Não possui cadastro? Criar cadastro {">>"}
-      </Button>
-    </View>
+        <View style={{ gap: 15, alignItems: "center" }}>
+          <Text
+            style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
+          >
+            Faça seu Login
+          </Text>
+          <Input label="E-mail" id="email" />
+          <Input label="Senha" id="senha" secureTextEntry={true} />
+          <Button
+            mode="contained"
+            buttonColor="#66B4B0"
+            textColor="#fff"
+            style={{
+              width: 300,
+              borderRadius: 4,
+              elevation: 4,
+            }}
+            // onPress={() => router.push("/apresentacao")}
+            labelStyle={{ fontFamily: "GilroyBold" }}
+            onPress={methods.handleSubmit(submit)}
+          >
+            Continuar
+          </Button>
+        </View>
+
+        <Button textColor="#E8E1C5">
+          Não possui cadastro? Criar cadastro {">>"}
+        </Button>
+      </View>
+    </FormProvider>
   );
 }
