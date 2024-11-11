@@ -17,7 +17,7 @@ const Apresentacao = () => {
       image: require("../assets/images/slide2.png"),
     },
     {
-      title: "Lembretes na hora certa!",
+      title: "Lembretes na hora certa",
       description:
         "Com nossos lembretes personalizados, você receberá notificações no momento exato de cada dose. Nunca mais perca um horário importante! Deixe o MedTimer te ajudar a manter sua saúde em dia, sem complicações.",
       image: require("../assets/images/slide3.png"),
