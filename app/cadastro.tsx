@@ -24,30 +24,22 @@ const Cadastro = () => {
   const email_value = methods.watch("email");
 
   const submit: SubmitHandler<CadastroForm> = async (data) => {
-    if (!email_value) {
-      await cadastraUsuario(
-        {
-          email: data.email,
-          nome: data.nome,
-          senha: data.senha,
-          dataNascimento: data.nascimento,
-        },
-        {
-          onSuccess: () => {
-            Toast.show({
-              type: "success",
-              text1: "Sucesso",
-              text2: "Cadastro realizado!",
-              visibilityTime: 4000,
-              autoHide: true,
-              topOffset: 30,
-              bottomOffset: 40,
-            });
-            router.push("/apresentacao");
-          },
-        }
-      );
-    }
+    await cadastraUsuario({
+      email: data.email,
+      nome: data.nome,
+      senha: data.senha,
+      dataNascimento: data.nascimento,
+    });
+    Toast.show({
+      type: "success",
+      text1: "Sucesso",
+      text2: "Cadastro realizado!",
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 30,
+      bottomOffset: 40,
+    });
+    router.push("/apresentacao");
   };
 
   return (

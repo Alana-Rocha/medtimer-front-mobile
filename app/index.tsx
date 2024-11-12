@@ -1,17 +1,15 @@
 import Input from "@/components/form/Input";
 import { LoginForm, loginSchema } from "@/constants/schemas/schemas";
-import { useMutationCadastraUsuario } from "@/hooks/useMutationCadastraUsuario";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import React from "react";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 
 export default function HomeScreen() {
   const router = useRouter();
   const methods = useForm<LoginForm>({ resolver: zodResolver(loginSchema) });
-
 
   return (
     <FormProvider {...methods}>
@@ -37,7 +35,6 @@ export default function HomeScreen() {
             style={{ width: 200, height: 200 }}
           />
         </View>
-
         <View style={{ gap: 15, alignItems: "center" }}>
           <Text
             style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
@@ -55,14 +52,12 @@ export default function HomeScreen() {
               borderRadius: 4,
               elevation: 4,
             }}
-            // onPress={() => router.push("/apresentacao")}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
             Continuar
           </Button>
         </View>
-
-        <Button textColor="#E8E1C5">
+        <Button textColor="#E8E1C5" onPress={() => router.push("/cadastro")}>
           Não possui cadastro? Criar cadastro {">>"}
         </Button>
       </View>

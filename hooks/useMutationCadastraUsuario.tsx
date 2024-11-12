@@ -9,15 +9,28 @@ type UsuarioRequest = {
 };
 
 const cadastraUsuario = async (data: UsuarioRequest) => {
-  const { data: usuario } = await api.post("/cadastrarUsuario", { ...data });
-  console.log(usuario);
-  return usuario;
+  const formData = new FormData();
+  formData.append("nome", data.nome);
+  formData.append("email", data.email);
+  formData.append("senha", data.senha);
+  formData.append("dataNascimento", data.dataNascimento);
+  await api.post("/cadastrarUsuario", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 export const useMutationCadastraUsuario = () => {
   return useMutation(cadastraUsuario, {
-    onError: (error) =>
-      //TODO testar
-      console.log(error, "Ocorreu um erro ao cancelar a proposta."),
+    onError: (error) => console.log(error), // Toast.show({
+    //   type: "error",
+    //   text1: "Ocorreu um erro",
+    //   text2: `${error}`,
+    //   visibilityTime: 4000,
+    //   autoHide: true,
+    //   topOffset: 30,
+    //   bottomOffset: 40,
+    // }),
   });
 };
