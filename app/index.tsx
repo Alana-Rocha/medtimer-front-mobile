@@ -1,5 +1,6 @@
 import Input from "@/components/form/Input";
 import { LoginForm, loginSchema } from "@/constants/schemas/schemas";
+import { useMutationCadastraUsuario } from "@/hooks/useMutationCadastraUsuario";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -11,10 +12,6 @@ export default function HomeScreen() {
   const router = useRouter();
   const methods = useForm<LoginForm>({ resolver: zodResolver(loginSchema) });
 
-  const submit: SubmitHandler<LoginForm> = (data) => {
-    
-    console.log(data);
-  };
 
   return (
     <FormProvider {...methods}>
@@ -60,7 +57,6 @@ export default function HomeScreen() {
             }}
             // onPress={() => router.push("/apresentacao")}
             labelStyle={{ fontFamily: "GilroyBold" }}
-            onPress={methods.handleSubmit(submit)}
           >
             Continuar
           </Button>

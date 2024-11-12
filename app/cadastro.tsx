@@ -1,12 +1,54 @@
 import Input from "@/components/form/Input";
+import { CadastroForm, cadastroSchema } from "@/constants/schemas/schemas";
+import { useMutationCadastraUsuario } from "@/hooks/useMutationCadastraUsuario";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
 import { Button } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 const Cadastro = () => {
   const router = useRouter();
-  const methods = useForm();
+  const methods = useForm<CadastroForm>({
+    resolver: zodResolver(cadastroSchema),
+    defaultValues: {
+      nome: "",
+      nascimento: "",
+      email: "",
+      senha: "",
+    },
+  });
+  const { mutateAsync: cadastraUsuario } = useMutationCadastraUsuario();
+
+  const email_value = methods.watch("email");
+
+  const submit: SubmitHandler<CadastroForm> = async (data) => {
+    if (!email_value) {
+      await cadastraUsuario(
+        {
+          email: data.email,
+          nome: data.nome,
+          senha: data.senha,
+          dataNascimento: data.nascimento,
+        },
+        {
+          onSuccess: () => {
+            Toast.show({
+              type: "success",
+              text1: "Sucesso",
+              text2: "Cadastro realizado!",
+              visibilityTime: 4000,
+              autoHide: true,
+              topOffset: 30,
+              bottomOffset: 40,
+            });
+            router.push("/apresentacao");
+          },
+        }
+      );
+    }
+  };
 
   return (
     <FormProvider {...methods}>
@@ -39,7 +81,7 @@ const Cadastro = () => {
 
           <View style={{ gap: 5 }}>
             <Input label="Nome" id="nome" />
-            <Input label="Idade" id="idade" />
+            <Input label="Data de Nascimento" id="nascimento" />
             <Input label="E-mail" id="email" />
             <Input label="Senha" id="senha" secureTextEntry={true} />
           </View>
@@ -52,7 +94,8 @@ const Cadastro = () => {
               borderRadius: 4,
               elevation: 4,
             }}
-            onPress={() => router.push("/apresentacao")}
+            // onPress={() => router.push("/apresentacao")}
+            onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
             Continuar

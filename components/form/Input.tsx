@@ -22,7 +22,6 @@ const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProps) => {
             ref={field.ref}
             error={invalid}
             onBlur={field.onBlur}
-            // mode="outlined"
             label={label}
             value={field.value}
             secureTextEntry={secureTextEntry}
