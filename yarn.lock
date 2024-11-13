@@ -7374,6 +7374,13 @@ react-native-helmet-async@2.0.4:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
+react-native-paper-dates@^0.22.27:
+  version "0.22.27"
+  resolved "https://registry.yarnpkg.com/react-native-paper-dates/-/react-native-paper-dates-0.22.27.tgz#5907e23dfcd6dcae33b7f9e267710b8411b25c38"
+  integrity sha512-QrTi/R5RHv+F1GSow1W340PEfVyUPrbWXYb27vk3u7LyP9NKDjw2RaSiz8HICEEwj6Ice7e8RMwL4OfkLhXr0A==
+  dependencies:
+    color "^4.2.3"
+
 react-native-paper@^5.12.5:
   version "5.12.5"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-5.12.5.tgz#e255c47f7bf2deb2dd90eaf3831473ef33e400b8"

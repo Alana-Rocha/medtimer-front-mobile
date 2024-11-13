@@ -1,8 +1,10 @@
+import DataSelect from "@/components/form/DataSelect";
 import Input from "@/components/form/Input";
 import { CadastroForm, cadastroSchema } from "@/constants/schemas/schemas";
 import { useMutationCadastraUsuario } from "@/hooks/useMutationCadastraUsuario";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
+import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
 import { Button } from "react-native-paper";
@@ -21,7 +23,11 @@ const Cadastro = () => {
   });
   const { mutateAsync: cadastraUsuario } = useMutationCadastraUsuario();
 
-  const email_value = methods.watch("email");
+  console.log(methods.getValues("nascimento"));
+  console.log(methods.getValues("email"));
+  console.log(methods.getValues("nome"));
+  console.log(methods.getValues("senha"));
+
 
   const submit: SubmitHandler<CadastroForm> = async (data) => {
     await cadastraUsuario({
@@ -73,7 +79,7 @@ const Cadastro = () => {
 
           <View style={{ gap: 5 }}>
             <Input label="Nome" id="nome" />
-            <Input label="Data de Nascimento" id="nascimento" />
+            <DataSelect />
             <Input label="E-mail" id="email" />
             <Input label="Senha" id="senha" secureTextEntry={true} />
           </View>

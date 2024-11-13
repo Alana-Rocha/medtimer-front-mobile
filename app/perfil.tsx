@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Perfil() {
   const router = useRouter();
@@ -18,7 +18,9 @@ export default function Perfil() {
           justifyContent: "center",
           alignItems: "center",
         }}
-      ></View>
+      >
+        <Text>oi</Text>
+      </View>
     </FormProvider>
   );
 }

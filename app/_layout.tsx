@@ -8,11 +8,11 @@ import {
 } from "@react-navigation/native";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
+import Routes from "./tabs";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,10 +37,11 @@ export default function RootLayout() {
     <PaperProvider theme={theme}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <QueryClientProvider client={queryClient}>
-          <Stack screenOptions={{ headerShown: false }}>
+          <Routes />
+          {/* <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="apresentacao" />
             <Stack.Screen name="cadastro" />
-          </Stack>
+          </Stack> */}
         </QueryClientProvider>
       </ThemeProvider>
     </PaperProvider>
