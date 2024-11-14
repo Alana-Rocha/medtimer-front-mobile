@@ -7,7 +7,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabRoutes() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator >
       <Tab.Screen
         name="medicamentos"
         component={Medicamentos}
