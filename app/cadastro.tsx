@@ -86,7 +86,6 @@ const Cadastro = () => {
               elevation: 4,
               padding: 5,
             }}
-            // onPress={() => router.push("/apresentacao")}
             onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >

@@ -36,7 +36,7 @@ export const medicamentoSchema = z.object({
   dosagem: z.coerce.number({ message: messageRequired }),
   duracao: z.coerce.number({ message: messageRequired }),
   frequencia: z.coerce.number({ message: messageRequired }),
-  horario: z.string().min(1, messageRequired),
+  horario: z.string({ message: messageRequired }),
 });
 
 export type CadastroForm = z.infer<typeof cadastroSchema>;

@@ -7,7 +7,7 @@ import {
 } from "@/constants/schemas/schemas";
 import { useMutationCadastraMedicamento } from "@/hooks/mutations/useMutationCadastraMedicamento";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "expo-router";
+
 import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
@@ -126,7 +126,7 @@ export default function Medicamentos() {
               padding: 5,
             }}
             // onPress={() => router.push("/apresentacao")}
-            // onPress={console.log(methods.getValues())}
+            onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
             Cadastrar
