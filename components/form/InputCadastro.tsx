@@ -9,7 +9,11 @@ type InputProps = {
   secureTextEntry?: boolean;
 };
 
-export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProps) => {
+export const InputCadastro = ({
+  id,
+  label,
+  secureTextEntry,
+}: InputProps & TextInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -26,7 +30,7 @@ export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProp
             value={field.value}
             secureTextEntry={secureTextEntry}
             outlineColor="#31658B"
-            style={{ width: 300, backgroundColor: "#E8E1C5" }}
+            style={{ backgroundColor: "#E8E1C5" }}
             activeOutlineColor="#000"
             onChangeText={field.onChange}
           />
@@ -40,4 +44,3 @@ export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProp
     />
   );
 };
-

@@ -1,6 +1,8 @@
 import { DateTime } from "luxon";
 import { z } from "zod";
 
+const messageRequired = "campo obrigatório";
+
 export const cadastroSchema = z.object({
   nome: z.string().min(1, "Nome é obrigatório"),
   email: z.string().email("Email inválido"),
@@ -28,5 +30,15 @@ export const loginSchema = z.object({
   senha: z.string().min(6, "Deve ter no mínimo 6 caracteres"),
 });
 
+export const medicamentoSchema = z.object({
+  nome: z.string().min(1, messageRequired),
+  descricao: z.string().optional(),
+  dosagem: z.coerce.number({ message: messageRequired }),
+  duracao: z.coerce.number({ message: messageRequired }),
+  frequencia: z.coerce.number({ message: messageRequired }),
+  horario: z.string().min(1, messageRequired),
+});
+
 export type CadastroForm = z.infer<typeof cadastroSchema>;
 export type LoginForm = z.infer<typeof loginSchema>;
+export type MedicamentoForm = z.infer<typeof medicamentoSchema>;

@@ -1,7 +1,7 @@
 import DataSelect from "@/components/form/DataSelect";
-import Input from "@/components/form/Input";
+import { Input } from "@/components/form/Input";
 import { CadastroForm, cadastroSchema } from "@/constants/schemas/schemas";
-import { useMutationCadastraUsuario } from "@/hooks/useMutationCadastraUsuario";
+import { useMutationCadastraUsuario } from "@/hooks/mutations/useMutationCadastraUsuario";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -22,12 +22,6 @@ const Cadastro = () => {
     },
   });
   const { mutateAsync: cadastraUsuario } = useMutationCadastraUsuario();
-
-  console.log(methods.getValues("nascimento"));
-  console.log(methods.getValues("email"));
-  console.log(methods.getValues("nome"));
-  console.log(methods.getValues("senha"));
-
 
   const submit: SubmitHandler<CadastroForm> = async (data) => {
     await cadastraUsuario({
@@ -54,7 +48,6 @@ const Cadastro = () => {
         style={{
           backgroundColor: "#31658B",
           height: "100%",
-          // padding: 20,
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -91,6 +84,7 @@ const Cadastro = () => {
               width: 300,
               borderRadius: 4,
               elevation: 4,
+              padding: 5,
             }}
             // onPress={() => router.push("/apresentacao")}
             onPress={methods.handleSubmit(submit)}

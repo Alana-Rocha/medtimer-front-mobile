@@ -1,36 +1,83 @@
-// import { Controller, useFormContext } from "react-hook-form";
-// import { View } from "react-native";
-// import SelectDropdown from "react-native-select-dropdown";
+import { Text } from "react-native-paper";
+import { Controller, useFormContext } from "react-hook-form";
+import { View } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
-// type SelectProps = {
-//   id: string;
-// };
+export type Item = { value: string; label: string } | string;
 
-// export const Select = ({ id }: SelectProps) => {
-//   const { control } = useFormContext();
+type SelectProps = {
+  id: string;
+  options: Item[];
+};
 
+export const Select = ({ id, options }: SelectProps) => {
+  const { control } = useFormContext();
 
-//   return (
-//     <Controller
-//       control={control}
-//       name={id}
-//       render={({ field }) => (
-//         <SelectDropdown
-//           ref={field.ref}
-//           data={["1", '2', '3']}
-//           onSelect={(selectedItem: Item | undefined) =>
-//             field.onChange(selectedItem?.value)
-//           }
-//           renderButton={renderButton}
-//           renderItem={renderItem}
-//           disabledIndexes={disabledOptions}
-//           dropdownStyle={{
-//             padding: 2,
-//             backgroundColor: "#E9ECEF",
-//             borderRadius: 8,
-//           }}
-//         />
-//       )}
-//     />
-//   );
-// };
+  const renderButton = (selectedItem: Item | undefined) => {
+    const label =
+      typeof selectedItem === "string" ? selectedItem : selectedItem?.label;
+
+    return (
+      <View
+        style={{
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+          backgroundColor: "#E8E1C5",
+          borderRadius: 5,
+          justifyContent: "center",
+          width: 220,
+        }}
+      >
+        <Text style={{ fontFamily: "GilroyRegular", fontSize: 17 }}>
+          {label || "Frequência"}
+        </Text>
+      </View>
+    );
+  };
+
+  const renderItem = (selectedItem: Item | undefined, idx: number) => {
+    const label =
+      typeof selectedItem === "string" ? selectedItem : selectedItem?.label;
+
+    return (
+      <View
+        style={{
+          paddingVertical: 5,
+          alignItems: "center",
+          flexDirection: "row",
+          gap: 5,
+          opacity: 1,
+        }}
+      >
+        <Text style={{ color: "#151E26" }}>{label}</Text>
+      </View>
+    );
+  };
+
+  return (
+    <Controller
+      control={control}
+      name={id}
+      render={({ field }) => (
+        <SelectDropdown
+          ref={field.ref}
+          data={options}
+          onSelect={(selectedItem: Item | undefined) =>
+            field.onChange(
+              typeof selectedItem === "string"
+                ? selectedItem
+                : selectedItem?.value
+            )
+          }
+          renderButton={renderButton}
+          renderItem={renderItem}
+          dropdownStyle={{
+            padding: 2,
+            backgroundColor: "#E9ECEF",
+            borderRadius: 8,
+          }}
+        />
+      )}
+    />
+  );
+};

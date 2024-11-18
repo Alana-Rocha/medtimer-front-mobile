@@ -1,4 +1,4 @@
-import Input from "@/components/form/Input";
+import { Input } from "@/components/form/Input";
 import { LoginForm, loginSchema } from "@/constants/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
@@ -51,6 +51,7 @@ export default function HomeScreen() {
               width: 300,
               borderRadius: 4,
               elevation: 4,
+              padding: 5,
             }}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
