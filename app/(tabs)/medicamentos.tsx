@@ -42,7 +42,7 @@ export default function Medicamentos() {
           >
             Clique no botão{" "}
             <Image
-              source={require("../assets/images/plus.png")}
+              source={require("../../assets/images/plus.png")}
               style={{ width: 23, height: 22 }}
             />{" "}
             para começar!
