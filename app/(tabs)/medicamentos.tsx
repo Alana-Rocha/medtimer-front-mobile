@@ -9,7 +9,6 @@ import { FAB, Text } from "react-native-paper";
 export default function Medicamentos() {
   const router = useRouter();
   const methods = useForm<LoginForm>({ resolver: zodResolver(loginSchema) });
-  
 
   return (
     <FormProvider {...methods}>
