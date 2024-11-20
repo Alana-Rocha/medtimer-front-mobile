@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native"; // Importação do hook de navegação
+import { router } from "expo-router";
 
 const Apresentacao = () => {
+  const navigation = useNavigation(); // Instância da navegação
+
   const slides = [
     {
       title: "Seja bem vindo(a) ao MedTimer, aqui a sua saúde é prioridade!",
@@ -51,7 +55,7 @@ const Apresentacao = () => {
     if (currentSlide < slides.length - 1) {
       setCurrentSlide(currentSlide + 1);
     } else {
-      setCurrentSlide(0);
+      router.push("/(tabs)/medicamentos");
     }
   };
 
@@ -130,7 +134,7 @@ const Apresentacao = () => {
           }}
           labelStyle={{ fontFamily: "GilroyBold" }}
         >
-          Continuar
+          {currentSlide === slides.length - 1 ? "Finalizar" : "Continuar"}
         </Button>
       </View>
     </View>
