@@ -28,7 +28,7 @@ export const Select = ({ id, options }: SelectProps) => {
           width: 220,
         }}
       >
-        <Text style={{ fontFamily: "GilroyRegular", fontSize: 17 }}>
+        <Text style={{ fontFamily: "GilroyRegular", fontSize: 16 }}>
           {label || "Frequência"}
         </Text>
       </View>
@@ -60,7 +60,6 @@ export const Select = ({ id, options }: SelectProps) => {
       name={id}
       render={({ field }) => (
         <SelectDropdown
-          ref={field.ref}
           data={options}
           onSelect={(selectedItem: Item | undefined) =>
             field.onChange(
@@ -80,4 +79,5 @@ export const Select = ({ id, options }: SelectProps) => {
       )}
     />
   );
+  
 };

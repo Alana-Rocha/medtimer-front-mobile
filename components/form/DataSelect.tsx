@@ -27,7 +27,7 @@ export default function DataSelect() {
       <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
         <DatePickerInput
           id="nascimento"
-          locale="pt"
+          locale="en"
           withModal={false}
           label="Data de Nascimento"
           value={inputDate}

@@ -21,17 +21,20 @@ export default function Medicamentos() {
       horario: "",
       nome: "",
       descricao: "",
-      dosagem: 1,
-      duracao: 1,
+      dosagem: 0,
+      duracao: 0,
       frequencia: 0,
     },
   });
 
+  console.log(methods.getValues());
+  console.log(methods.getValues());
+
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
-  const submit: SubmitHandler<MedicamentoForm> = async (data) => {
-    console.log(data);
+  const submit: SubmitHandler<MedicamentoForm> = (data) => {
+
     // await cadastrarMedicamento({
     //   nome: data.nome,
     //   descricao: data.descricao,
@@ -125,6 +128,7 @@ export default function Medicamentos() {
               elevation: 4,
               padding: 5,
             }}
+            loading={isLoading}
             // onPress={() => router.push("/apresentacao")}
             onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
@@ -143,7 +147,6 @@ export default function Medicamentos() {
               padding: 5,
             }}
             // onPress={() => router.push("/apresentacao")}
-            // onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
             Voltar

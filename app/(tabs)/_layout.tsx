@@ -3,7 +3,7 @@ import { Image } from "react-native";
 
 export default function TabRoutes() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="medicamentos"
         options={{

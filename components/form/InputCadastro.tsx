@@ -23,7 +23,6 @@ export const InputCadastro = ({
       render={({ field, fieldState: { error, invalid } }) => (
         <View>
           <TextInput
-            ref={field.ref}
             error={invalid}
             onBlur={field.onBlur}
             label={label}

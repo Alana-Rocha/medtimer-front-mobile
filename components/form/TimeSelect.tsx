@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Pressable } from "react-native";
 import { TimePickerModal } from "react-native-paper-dates";
 
 type TimeSelectProps = {
@@ -33,13 +33,9 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
       name={id}
       render={({ field }) => (
         <View>
-          <TouchableOpacity
-            ref={field.ref}
-            style={styles.timePicker}
-            onPress={() => setVisible(true)}
-          >
+          <Pressable style={styles.timePicker} onPress={() => setVisible(true)}>
             <Text style={styles.timeText}>{time}</Text>
-          </TouchableOpacity>
+          </Pressable>
           <TimePickerModal
             visible={visible}
             onDismiss={onDismiss}

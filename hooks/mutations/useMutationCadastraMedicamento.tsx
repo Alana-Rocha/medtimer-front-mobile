@@ -1,5 +1,6 @@
 import { api } from "@/service/api";
 import { useMutation } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios";
 
 type MedicamentoRequest = {
   nome: string;
@@ -27,14 +28,15 @@ const cadastraUsuario = async (data: MedicamentoRequest) => {
 
 export const useMutationCadastraMedicamento = () => {
   return useMutation(cadastraUsuario, {
-    onError: (error) => console.log(error), // Toast.show({
-    //   type: "error",
-    //   text1: "Ocorreu um erro",
-    //   text2: `${error}`,
-    //   visibilityTime: 4000,
-    //   autoHide: true,
-    //   topOffset: 30,
-    //   bottomOffset: 40,
-    // }),
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        console.error("Erro na API:", {
+          status: error.response?.status,
+          data: error.response?.data,
+        });
+      } else {
+        console.error("Erro desconhecido:", error);
+      }
+    },
   });
 };

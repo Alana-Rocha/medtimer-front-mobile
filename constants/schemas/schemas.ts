@@ -27,15 +27,15 @@ export const cadastroSchema = z.object({
 
 export const loginSchema = z.object({
   email: z.string().email("Email inválido"),
-  senha: z.string().min(6, "Deve ter no mínimo 6 caracteres"),
+  senha: z.string().min(1, messageRequired),
 });
 
 export const medicamentoSchema = z.object({
   nome: z.string().min(1, messageRequired),
-  descricao: z.string().optional(),
-  dosagem: z.coerce.number({ message: messageRequired }),
-  duracao: z.coerce.number({ message: messageRequired }),
-  frequencia: z.coerce.number({ message: messageRequired }),
+  descricao: z.string(),
+  dosagem: z.coerce.number().min(1, messageRequired),
+  duracao: z.coerce.number().min(1, messageRequired),
+  frequencia: z.coerce.number().gt(0, messageRequired).default(0),
   horario: z.string({ message: messageRequired }),
 });
 
