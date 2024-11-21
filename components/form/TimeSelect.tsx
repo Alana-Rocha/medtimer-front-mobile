@@ -34,7 +34,7 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
       name={id}
       defaultValue=""
       render={({ field, fieldState }) => (
-        <View>
+        <View style={{flex: 1}}>
           <Pressable style={styles.timePicker} onPress={() => setVisible(true)}>
             <Text style={styles.timeText}>{time}</Text>
           </Pressable>
