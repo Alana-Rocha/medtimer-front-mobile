@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { View, StyleSheet, Pressable, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { TimePickerModal } from "react-native-paper-dates";
 
 type TimeSelectProps = {
@@ -34,7 +34,7 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
       name={id}
       defaultValue=""
       render={({ field, fieldState }) => (
-        <View style={{flex: 1}}>
+        <View>
           <Pressable style={styles.timePicker} onPress={() => setVisible(true)}>
             <Text style={styles.timeText}>{time}</Text>
           </Pressable>
@@ -45,8 +45,10 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
             visible={visible}
             onDismiss={onDismiss}
             onConfirm={({ hours, minutes }) => {
-              const formattedTime = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
-              onConfirm({ hours, minutes }); 
+              const formattedTime = `${hours}:${
+                minutes < 10 ? `0${minutes}` : minutes
+              }`;
+              onConfirm({ hours, minutes });
               field.onChange(formattedTime);
             }}
             hours={12}
@@ -70,9 +72,10 @@ const styles = StyleSheet.create({
   },
   timeText: {
     fontFamily: "GilroyRegular",
-    color: "#000",
+    color: "#58545A",
     fontSize: 16,
     fontWeight: "500",
+    marginRight: 28
   },
   errorText: {
     color: "red",

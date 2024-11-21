@@ -1,9 +1,9 @@
-import { Text } from "react-native-paper";
 import { Controller, useFormContext } from "react-hook-form";
 import { View } from "react-native";
+import { Text } from "react-native-paper";
 import SelectDropdown from "react-native-select-dropdown";
 
-export type Item = { value: string | number; label: string } | string;
+export type Item = { value: string | number; label: string };
 
 type SelectProps = {
   id: string;
@@ -23,19 +23,26 @@ export const Select = ({ id, options }: SelectProps) => {
           paddingVertical: 10,
           paddingHorizontal: 15,
           backgroundColor: "#E8E1C5",
-          borderRadius: 5,
+          borderRadius: 2,
           justifyContent: "center",
           width: 220,
         }}
       >
-        <Text style={{ fontFamily: "GilroyRegular", fontSize: 16 }}>
-          {label}
+        <Text
+          style={{
+            fontFamily: "GilroyRegular",
+            fontSize: 16,
+            color: "#58545A",
+            marginLeft: 3,
+          }}
+        >
+          {label || "Frequência"}
         </Text>
       </View>
     );
   };
 
-  const renderItem = (selectedItem: Item | undefined, idx: number) => {
+  const renderItem = (selectedItem: Item | undefined) => {
     const label =
       typeof selectedItem === "object" ? selectedItem?.label : undefined;
 
@@ -46,10 +53,11 @@ export const Select = ({ id, options }: SelectProps) => {
           alignItems: "center",
           flexDirection: "row",
           gap: 5,
+          marginLeft: 6,
           opacity: 1,
         }}
       >
-        <Text style={{ color: "#151E26" }}>{label}</Text>
+        <Text style={{ color: "#151E26", fontFamily: 'GilroyRegular' }}>{label}</Text>
       </View>
     );
   };

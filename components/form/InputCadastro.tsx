@@ -21,7 +21,7 @@ export const InputCadastro = ({
       control={control}
       name={id}
       render={({ field, fieldState: { error, invalid } }) => (
-        <View>
+        <View style={{ position: "relative" }}>
           <TextInput
             error={invalid}
             onBlur={field.onBlur}
@@ -34,7 +34,15 @@ export const InputCadastro = ({
             onChangeText={field.onChange}
           />
           {error && (
-            <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
+            <Text
+              style={{
+                color: "red",
+                fontSize: 12,
+                marginTop: 4,
+                position: "absolute",
+                bottom: -14
+              }}
+            >
               {error.message}
             </Text>
           )}

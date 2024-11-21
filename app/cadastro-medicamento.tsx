@@ -13,6 +13,7 @@ import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 export default function Medicamentos() {
   const router = useRouter();
@@ -22,9 +23,6 @@ export default function Medicamentos() {
       horario: "",
       nome: "",
       descricao: "",
-      dosagem: 1,
-      duracao: 1,
-      frequencia: 1,
     },
   });
 
@@ -34,17 +32,17 @@ export default function Medicamentos() {
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
-  const submit: SubmitHandler<MedicamentoForm> = (data) => {
-    console.log(data);
+  const submit: SubmitHandler<MedicamentoForm> = async (data) => {
+    // console.log(data);
 
-    // await cadastrarMedicamento({
-    //   nome: data.nome,
-    //   descricao: data.descricao,
-    //   dosagem: data.dosagem,
-    //   duracao: data.duracao,
-    //   frequencia: data.frequencia,
-    //   horario: data.horario,
-    // });
+    await cadastrarMedicamento({
+      nome: data.nome,
+      descricao: data.descricao,
+      dosagem: data.dosagem,
+      duracao: data.duracao,
+      frequencia: data.frequencia,
+      horario: data.horario,
+    });
     // Toast.show({
     //   type: "success",
     //   text1: "Sucesso",
@@ -114,6 +112,7 @@ export default function Medicamentos() {
             label="Descrição"
             placeholder="Remédio para dor de cabeça"
           />
+          
           <View style={{ flexDirection: "row", gap: 7 }}>
             <InputCadastro
               id="duracao"
