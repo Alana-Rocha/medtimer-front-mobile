@@ -3,7 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { View } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 
-export type Item = { value: string; label: string } | string;
+export type Item = { value: string | number; label: string } | string;
 
 type SelectProps = {
   id: string;
@@ -15,7 +15,7 @@ export const Select = ({ id, options }: SelectProps) => {
 
   const renderButton = (selectedItem: Item | undefined) => {
     const label =
-      typeof selectedItem === "string" ? selectedItem : selectedItem?.label;
+      typeof selectedItem === "object" ? selectedItem?.label : "Frequência";
 
     return (
       <View
@@ -29,7 +29,7 @@ export const Select = ({ id, options }: SelectProps) => {
         }}
       >
         <Text style={{ fontFamily: "GilroyRegular", fontSize: 16 }}>
-          {label || "Frequência"}
+          {label}
         </Text>
       </View>
     );
@@ -37,7 +37,7 @@ export const Select = ({ id, options }: SelectProps) => {
 
   const renderItem = (selectedItem: Item | undefined, idx: number) => {
     const label =
-      typeof selectedItem === "string" ? selectedItem : selectedItem?.label;
+      typeof selectedItem === "object" ? selectedItem?.label : undefined;
 
     return (
       <View
@@ -63,9 +63,9 @@ export const Select = ({ id, options }: SelectProps) => {
           data={options}
           onSelect={(selectedItem: Item | undefined) =>
             field.onChange(
-              typeof selectedItem === "string"
-                ? selectedItem
-                : selectedItem?.value
+              typeof selectedItem === "object" && selectedItem?.value
+                ? Number(selectedItem.value)
+                : 0
             )
           }
           renderButton={renderButton}
@@ -79,5 +79,4 @@ export const Select = ({ id, options }: SelectProps) => {
       )}
     />
   );
-  
 };

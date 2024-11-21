@@ -21,19 +21,20 @@ export default function Medicamentos() {
       horario: "",
       nome: "",
       descricao: "",
-      dosagem: 0,
-      duracao: 0,
-      frequencia: 0,
+      dosagem: 1,
+      duracao: 1,
+      frequencia: 1,
     },
   });
 
-  console.log(methods.getValues());
-  console.log(methods.getValues());
+  // console.log(methods.getValues());
+  console.log("Erros do formulário:", methods.formState.errors);
 
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
   const submit: SubmitHandler<MedicamentoForm> = (data) => {
+    console.log(data);
 
     // await cadastrarMedicamento({
     //   nome: data.nome,
@@ -56,11 +57,11 @@ export default function Medicamentos() {
   };
 
   const listaFrequencias = [
-    "1x ao dia",
-    "2x ao dia",
-    "3x ao dia",
-    "4x ao dia",
-    "5x ao dia",
+    { value: 1, label: "1x ao dia" },
+    { value: 2, label: "2x ao dia" },
+    { value: 3, label: "3x ao dia" },
+    { value: 4, label: "4x ao dia" },
+    { value: 5, label: "5x ao dia" },
   ];
 
   return (
@@ -117,13 +118,14 @@ export default function Medicamentos() {
           </View>
         </View>
 
-        <View style={{ gap: 10, marginTop: 23 }}>
+        <View style={{ gap: 10, marginTop: 23, flexDirection: "row" }}>
           <Button
+
             mode="contained"
             buttonColor="#66B4B0"
             textColor="#fff"
             style={{
-              width: 300,
+              width: 215,
               borderRadius: 4,
               elevation: 4,
               padding: 5,
@@ -141,7 +143,7 @@ export default function Medicamentos() {
             buttonColor="#66B4B0"
             textColor="#fff"
             style={{
-              width: 300,
+              width: 215,
               borderRadius: 4,
               elevation: 4,
               padding: 5,

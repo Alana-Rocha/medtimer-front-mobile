@@ -43,7 +43,7 @@ export default function HomeScreen() {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
-          // gap: 5,
+          gap: 25,
         }}
       >
         <View
@@ -51,12 +51,11 @@ export default function HomeScreen() {
             backgroundColor: "#31658B",
             justifyContent: "center",
             alignItems: "center",
-            gap: 10,
           }}
         >
           <Image
             source={require("../assets/images/logo.png")}
-            style={{ width: 200, height: 200 }}
+            style={{ width: 230, height: 180 }}
           />
         </View>
         <View style={{ gap: 15, alignItems: "center" }}>
@@ -83,10 +82,10 @@ export default function HomeScreen() {
           >
             Continuar
           </Button>
+          <Button textColor="#E8E1C5" onPress={() => router.push("/cadastro")}>
+            Não possui cadastro? Criar cadastro {">>"}
+          </Button>
         </View>
-        <Button textColor="#E8E1C5" onPress={() => router.push("/cadastro")}>
-          Não possui cadastro? Criar cadastro {">>"}
-        </Button>
       </View>
     </FormProvider>
   );

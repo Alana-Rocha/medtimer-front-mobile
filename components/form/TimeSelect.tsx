@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { View, StyleSheet, TouchableOpacity, Text, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import { TimePickerModal } from "react-native-paper-dates";
 
 type TimeSelectProps = {
@@ -9,8 +9,9 @@ type TimeSelectProps = {
 
 export const TimeSelect = ({ id }: TimeSelectProps) => {
   const [visible, setVisible] = useState(false);
-  const [time, setTime] = useState<string | null>("Selecione um horário");
+  const [time, setTime] = useState<string>("Selecione um horário");
   const { control } = useFormContext();
+
   const onDismiss = () => {
     setVisible(false);
   };
@@ -31,17 +32,22 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
     <Controller
       control={control}
       name={id}
-      render={({ field }) => (
+      defaultValue=""
+      render={({ field, fieldState }) => (
         <View>
           <Pressable style={styles.timePicker} onPress={() => setVisible(true)}>
             <Text style={styles.timeText}>{time}</Text>
           </Pressable>
+          {fieldState.error && (
+            <Text style={styles.errorText}>{fieldState.error.message}</Text>
+          )}
           <TimePickerModal
             visible={visible}
             onDismiss={onDismiss}
-            onConfirm={(params) => {
-              onConfirm(params);
-              field.onChange(params);
+            onConfirm={({ hours, minutes }) => {
+              const formattedTime = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+              onConfirm({ hours, minutes }); 
+              field.onChange(formattedTime);
             }}
             hours={12}
             minutes={0}
@@ -57,7 +63,6 @@ const styles = StyleSheet.create({
   timePicker: {
     width: 220,
     padding: 18.9,
-    // height: 50,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#E8E1C5",
@@ -68,5 +73,10 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 16,
     fontWeight: "500",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 4,
   },
 });
