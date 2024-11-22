@@ -26,7 +26,7 @@ export default function Medicamentos() {
             para começar!
           </Text>
         </View>
-        <FAB
+        {/* <FAB
           label="Adicionar Medicamento"
           icon="plus"
           color="#FFF"
@@ -34,7 +34,7 @@ export default function Medicamentos() {
           style={styles.fab}
           accessibilityLabel="Botão para adicionar um novo medicamento"
           onPress={() => router.push("/cadastro-medicamento")}
-        />
+        /> */}
       </View>
     </FormProvider>
   );
