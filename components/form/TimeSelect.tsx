@@ -64,7 +64,7 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
 const styles = StyleSheet.create({
   timePicker: {
     width: 220,
-    padding: 18.9,
+    padding: 18.8,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#E8E1C5",

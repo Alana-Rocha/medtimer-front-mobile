@@ -60,7 +60,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
 const styles = StyleSheet.create({
   tabbar: {
-    // position: "absolute",
+    position: "absolute",
     bottom: 25,
     flexDirection: "row",
     justifyContent: "center",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderCurve: "continuous",
     // shadowColor: "black",
-    shadowOffset: { width: 100, height: 10 },
+    // shadowOffset: { width: 100, height: 10 },
     shadowRadius: 10,
     shadowOpacity: 0.1,
   },

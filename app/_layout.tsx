@@ -1,4 +1,5 @@
 import { theme } from "@/constants/theme";
+import { useAuthStore } from "@/hooks/stores/AuthStore";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { queryClient } from "@/service/queryClient";
 import {
@@ -23,9 +24,12 @@ export default function RootLayout() {
     GilroyBold: require("../assets/fonts/Gilroy-Bold.ttf"),
   });
 
+  const verificarLogin = useAuthStore((s) => s.verificarLogin);
+
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      verificarLogin();
     }
   }, [loaded]);
 
@@ -38,11 +42,15 @@ export default function RootLayout() {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <QueryClientProvider client={queryClient}>
           <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
+            {/* <Stack.Screen name="(tabs)" /> */}
             <Stack.Screen name="apresentacao" />
             <Stack.Screen name="cadastro" />
             <Stack.Screen
               name="cadastro-medicamento"
+              options={{ presentation: "modal" }}
+            />
+            <Stack.Screen
+              name="editar-medicamento"
               options={{ presentation: "modal" }}
             />
           </Stack>

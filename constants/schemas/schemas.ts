@@ -42,3 +42,4 @@ export const medicamentoSchema = z.object({
 export type CadastroForm = z.infer<typeof cadastroSchema>;
 export type LoginForm = z.infer<typeof loginSchema>;
 export type MedicamentoForm = z.infer<typeof medicamentoSchema>;
+export type EditarMedicamentoForm = z.infer<typeof medicamentoSchema>;

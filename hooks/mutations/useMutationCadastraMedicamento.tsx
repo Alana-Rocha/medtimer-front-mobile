@@ -1,6 +1,7 @@
 import { api } from "@/service/api";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios, { HttpStatusCode } from "axios";
+import { useAuthStore } from "../stores/AuthStore";
 
 type MedicamentoRequest = {
   nome: string;
@@ -12,17 +13,8 @@ type MedicamentoRequest = {
 };
 
 const cadastraUsuario = async (data: MedicamentoRequest) => {
-  const formData = new FormData();
-  formData.append("nome", data.nome);
-  formData.append("descricao", data.descricao);
-  formData.append("dosagem", data.dosagem.toString());
-  formData.append("duracao", data.duracao.toString());
-  formData.append("frequencia", data.frequencia.toString());
-  formData.append("horario", data.horario);
-  await api.post("/cadastrarMedicamento", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+  await api.post("medicamento/cadastrar", {
+    ...data,
   });
 };
 
@@ -30,6 +22,9 @@ export const useMutationCadastraMedicamento = () => {
   return useMutation(cadastraUsuario, {
     onError: (error) => {
       if (axios.isAxiosError(error)) {
+        if (error.response?.status === HttpStatusCode.Forbidden)
+          return useAuthStore.getState().logout();
+
         console.error("Erro na API:", {
           status: error.response?.status,
           data: error.response?.data,

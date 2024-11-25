@@ -1,5 +1,6 @@
 import { api } from "@/service/api";
 import { useMutation } from "@tanstack/react-query";
+import { useMutationLogin } from "./useMutationLogin";
 
 type UsuarioRequest = {
   nome: string;
@@ -9,28 +10,19 @@ type UsuarioRequest = {
 };
 
 const cadastraUsuario = async (data: UsuarioRequest) => {
-  const formData = new FormData();
-  formData.append("nome", data.nome);
-  formData.append("email", data.email);
-  formData.append("senha", data.senha);
-  formData.append("dataNascimento", data.dataNascimento);
-  await api.post("/cadastrarUsuario", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+  console.log(data);
+  await api.post("auth/cadastrar", {
+    ...data,
   });
+  return data;
 };
 
 export const useMutationCadastraUsuario = () => {
+  const { mutateAsync: login } = useMutationLogin();
   return useMutation(cadastraUsuario, {
-    onError: (error) => console.log(error), // Toast.show({
-    //   type: "error",
-    //   text1: "Ocorreu um erro",
-    //   text2: `${error}`,
-    //   visibilityTime: 4000,
-    //   autoHide: true,
-    //   topOffset: 30,
-    //   bottomOffset: 40,
-    // }),
+    onSuccess: async (data) => {
+      await login({ email: data.email, senha: data.senha });
+    },
+    onError: (error) => console.log(error),
   });
 };

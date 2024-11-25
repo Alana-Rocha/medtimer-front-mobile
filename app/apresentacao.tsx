@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native"; // Importação do hook de navegação
+import { useNavigation } from "@react-navigation/native"; 
 import { router } from "expo-router";
 
 const Apresentacao = () => {
-  const navigation = useNavigation(); // Instância da navegação
+  // const navigation = useNavigation(); 
 
   const slides = [
     {

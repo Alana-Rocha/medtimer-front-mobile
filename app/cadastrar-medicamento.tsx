@@ -13,9 +13,8 @@ import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import Toast from "react-native-toast-message";
 
-export default function Medicamentos() {
+export default function Editar() {
   const router = useRouter();
   const methods = useForm<MedicamentoForm>({
     resolver: zodResolver(medicamentoSchema),
@@ -26,15 +25,12 @@ export default function Medicamentos() {
     },
   });
 
-  // console.log(methods.getValues());
   console.log("Erros do formulário:", methods.formState.errors);
 
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
   const submit: SubmitHandler<MedicamentoForm> = async (data) => {
-    // console.log(data);
-
     await cadastrarMedicamento({
       nome: data.nome,
       descricao: data.descricao,
@@ -112,7 +108,7 @@ export default function Medicamentos() {
             label="Descrição"
             placeholder="Remédio para dor de cabeça"
           />
-          
+
           <View style={{ flexDirection: "row", gap: 7 }}>
             <InputCadastro
               id="duracao"
@@ -139,7 +135,6 @@ export default function Medicamentos() {
                 padding: 5,
               }}
               loading={isLoading}
-              // onPress={() => router.push("/apresentacao")}
               onPress={methods.handleSubmit(submit)}
               labelStyle={{ fontFamily: "GilroyBold" }}
             >
