@@ -104,8 +104,8 @@ const Cadastro = () => {
               elevation: 4,
               padding: 5,
             }}
-            loading={isLoading}
-            disabled={isLoading}
+            // loading={isLoading}
+            // disabled={isLoading}
             onPress={() => router.push("/")}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >
