@@ -60,7 +60,8 @@ const TabBarButton = ({
         style={[
           {
             color,
-            fontSize: 11,
+            fontSize: 13,
+            fontFamily: 'GilroyRegular'
           },
           animatedTextStyle,
         ]}

@@ -1,16 +1,30 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image } from "react-native";
 
 export const icon = {
-  medicamentos: ({ color, focused }: { color: string; focused: boolean }) =>
-    focused ? (
-      <Ionicons name="medkit" size={24} color={color} />
-    ) : (
-      <Ionicons name="medkit-outline" size={24} color={color} />
-    ),
-  perfil: ({ color, focused }: { color: string; focused: boolean }) =>
-    focused ? (
-      <Ionicons name="person-circle" size={24} color={color} />
-    ) : (
-      <Ionicons name="person-circle-outline" size={24} color={color} />
-    ),
+  medicamentos: ({ color, focused }: { color: string; focused: boolean }) => (
+    <Image
+      source={
+        focused
+          ? require("../assets/images/cartela.png") 
+          : require("../assets/images/cartela.png") 
+      }
+      style={{
+        width: 24,
+        height: 24,
+      }}
+    />
+  ),
+  perfil: ({ color, focused }: { color: string; focused: boolean }) => (
+    <Image
+      source={
+        focused
+          ? require("../assets/images/perfil.png")
+          : require("../assets/images/perfil.png")
+      }
+      style={{
+        width: 24,
+        height: 24,
+      }}
+    />
+  ),
 };

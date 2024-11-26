@@ -37,6 +37,14 @@ export default function Medicamentos() {
         }}
       >
         <View style={{ gap: 20 }}>
+          <View style={{ paddingVertical: 10 }}>
+            <Text
+              variant="displayMedium"
+              style={{ fontSize: 35, padding: 3, color: "#645E5E" }}
+            >
+              Olá, Alana!
+            </Text>
+          </View>
           {medicamentos?.map((medicamento) => (
             <View
               style={{
@@ -60,7 +68,10 @@ export default function Medicamentos() {
                 }}
               >
                 <View>
-                  <Text variant="displayMedium" style={{ fontSize: 25 }}>
+                  <Text
+                    variant="displayMedium"
+                    style={{ fontSize: 25, color: "#645E5E" }}
+                  >
                     {medicamento.nome}
                   </Text>
                 </View>
@@ -71,7 +82,7 @@ export default function Medicamentos() {
                     icon={() => (
                       <Image
                         source={require("../../assets/images/edit.png")}
-                        style={{ width: 33, height: 33 }}
+                        style={{ width: 29, height: 30 }}
                       />
                     )}
                     size={20}
@@ -124,7 +135,7 @@ const styles = StyleSheet.create({
   fab: {
     position: "absolute",
     right: 40,
-    bottom: 120,
+    bottom: 90,
     backgroundColor: "#66B4B0",
     borderRadius: 50,
     elevation: 4,
