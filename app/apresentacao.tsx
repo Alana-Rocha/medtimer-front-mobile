@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native"; 
 import { router } from "expo-router";
 
 const Apresentacao = () => {
-  // const navigation = useNavigation(); 
+  // const navigation = useNavigation();
 
   const slides = [
     {
@@ -80,15 +79,15 @@ const Apresentacao = () => {
       style={{
         backgroundColor: "#E8E1C5",
         height: "100%",
-        padding: 20,
+        width: "100%",
+        paddingHorizontal: 20,
         justifyContent: "center",
         alignItems: "center",
-        gap: 60,
+        gap: 5,
       }}
     >
       <Animated.View
         style={{
-          gap: 15,
           opacity: fadeAnim,
           transform: [{ translateX: slideAnim }],
         }}
@@ -100,9 +99,10 @@ const Apresentacao = () => {
         </Text>
         <Text
           style={{
+            color: "#31658B",
             fontFamily: "GilroyRegular",
             marginTop: 8,
-            fontSize: 15,
+            fontSize: 18,
           }}
         >
           {slides[currentSlide].description}
@@ -121,14 +121,15 @@ const Apresentacao = () => {
 
       <PaginationDots />
 
-      <View style={{ marginTop: 30 }}>
+      <View style={{ marginTop: 20 }}>
         <Button
           mode="contained"
           buttonColor="#66B4B0"
           textColor="#fff"
           onPress={handleNextSlide}
           style={{
-            width: 140,
+            // width: 140,
+            padding: 10,
             borderRadius: 50,
             elevation: 4,
           }}

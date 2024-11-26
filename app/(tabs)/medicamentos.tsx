@@ -22,10 +22,10 @@ export default function Medicamentos() {
           </Text>
           <Text style={styles.text}>
             Clique no botão{" "}
-            <Image
+            {/* <Image
               source={require("../../assets/images/plus.png")}
               style={styles.image}
-            />{" "}
+            />{" "} */}
             para começar!
           </Text>
         </View>
@@ -132,11 +132,10 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: "absolute",
-    right: 40,
-    bottom: 90,
+    right: 35,
+    bottom: 100,
     backgroundColor: "#66B4B0",
     borderRadius: 50,
-    elevation: 4,
   },
   messageContainer: {
     alignItems: "center",
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     fontFamily: "GilroyRegular",
     textAlign: "center",
     color: "#31658B",
-    fontSize: 21,
+    fontSize: 18,
   },
   image: {
     width: 23,
