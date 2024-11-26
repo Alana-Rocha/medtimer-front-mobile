@@ -10,7 +10,6 @@ type UsuarioRequest = {
 };
 
 const cadastraUsuario = async (data: UsuarioRequest) => {
-  console.log(data);
   await api.post("auth/cadastrar", {
     ...data,
   });

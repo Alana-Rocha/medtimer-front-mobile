@@ -27,7 +27,6 @@ export const useMutationLogin = () => {
   return useMutation(login, {
     onSuccess: async (res) => {
       const token = res.token;
-      console.log(token);
       await setData({ key: "token", data: token });
       const user = jwtDecode<User>(token);
       setUser(user);
