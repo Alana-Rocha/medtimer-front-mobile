@@ -62,7 +62,7 @@ export default function Medicamentos() {
                 <View>
                   <Text
                     variant="displayMedium"
-                    style={{ fontSize: 25, color: "#645E5E" }}
+                    style={{ fontSize: 25, color: "#000" }}
                   >
                     {medicamento.nome}
                   </Text>
@@ -111,7 +111,7 @@ export default function Medicamentos() {
       accessibilityLabel="Botão para adicionar um novo medicamento"
       onPress={() => router.push("/cadastrar-medicamento")}
     />
-       {/* <Sheet ref={bottomSheetRef} /> */}
+       <Sheet ref={bottomSheetRef} />
   </View>
   
   );

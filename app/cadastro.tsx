@@ -57,7 +57,7 @@ const Cadastro = () => {
         <View style={{ gap: 10, alignItems: "center" }}>
           <Image
             source={require("../assets/images/logo.png")}
-            style={{ width: 200, height: 200 }}
+            style={{ width: 230, height: 180 }}
           />
 
           <View>
