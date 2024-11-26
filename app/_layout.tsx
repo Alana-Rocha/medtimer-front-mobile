@@ -50,7 +50,7 @@ export default function RootLayout() {
       await SplashScreen.hideAsync();
       router.push(initialRoute);
     }
-  }, [appIsReady]);
+  }, [appIsReady, initialRoute]);
 
   if (!loaded || !appIsReady) {
     return null;
