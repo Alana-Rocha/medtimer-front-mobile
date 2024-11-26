@@ -17,7 +17,6 @@ const consultaMedicamento = async () => {
   const { data } = await api.get<ConsultaMedicamentoResponse[]>(
     "medicamento/listar"
   );
-  console.log(data);
   return data;
 };
 

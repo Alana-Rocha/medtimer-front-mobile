@@ -1,28 +1,38 @@
+import { useQueryConsultaMedicamento } from "@/hooks/querys/useQueryConsultaMedicamentos";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useImperativeHandle, forwardRef } from "react";
 import { StyleSheet, Text } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-const Sheet = () => {
-  // ref
-  const bottomSheetRef = useRef<BottomSheet>(null);
+export type SheetRef = {
+  open: () => void;
+  close: () => void;
+};
 
-  // callbacks
+export const Sheet = forwardRef<SheetRef>((props, ref) => {
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
+
+  useImperativeHandle(ref, () => ({
+    open: () => bottomSheetRef.current?.expand(),
+    close: () => bottomSheetRef.current?.close(),
+  }));
+
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
 
-  // renders
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <BottomSheet ref={bottomSheetRef} onChange={handleSheetChanges}>
-        <BottomSheetView style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
-        </BottomSheetView>
-      </BottomSheet>
-    </GestureHandlerRootView>
+    <BottomSheet
+      ref={bottomSheetRef}
+      snapPoints={["25%", "50%"]}
+      onChange={handleSheetChanges}
+    >
+      <BottomSheetView style={styles.contentContainer}>
+        <Text>Detalhes do Medicamento 🎉</Text>
+      </BottomSheetView>
+    </BottomSheet>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -35,5 +45,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default Sheet;

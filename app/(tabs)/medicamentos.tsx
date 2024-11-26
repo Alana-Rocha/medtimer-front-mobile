@@ -1,43 +1,44 @@
-import { LoginForm, loginSchema } from "@/constants/schemas/schemas";
+import { Sheet, SheetRef } from "@/components/BottomSheet";
 import { useQueryConsultaMedicamento } from "@/hooks/querys/useQueryConsultaMedicamentos";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
-import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { Image, StyleSheet, View } from "react-native";
+import React, { useRef } from "react";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { FAB, IconButton, Text } from "react-native-paper";
 
 export default function Medicamentos() {
   const router = useRouter();
-  const methods = useForm<LoginForm>({ resolver: zodResolver(loginSchema) });
   const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
-  console.log(medicamentos);
-
-  if (isLoading) return <Text>Carregando medicamentos...</Text>;
+  const bottomSheetRef = useRef<SheetRef>(null);
 
   return (
-    <FormProvider {...methods}>
-      <View style={styles.container}>
-        {!medicamentos && (
-          <View style={styles.messageContainer}>
-            <Text style={styles.text}>
-              Parece que você não possui nenhum {"\n"} medicamento cadastrado...
-            </Text>
-            <Text style={styles.text}>
-              Clique no botão{" "}
-              <Image
-                source={require("../../assets/images/plus.png")}
-                style={styles.image}
-              />{" "}
-              para começar!
-            </Text>
-          </View>
-        )}
+    <View style={styles.container}>
+      {medicamentos?.length == 0 && (
+        <View style={styles.messageContainer}>
+          <Text style={styles.text}>
+            Parece que você não possui nenhum {"\n"} medicamento cadastrado...
+          </Text>
+          <Text style={styles.text}>
+            Clique no botão{" "}
+            <Image
+              source={require("../../assets/images/plus.png")}
+              style={styles.image}
+            />{" "}
+            para começar!
+          </Text>
+        </View>
+      )}
 
-        <View style={{ width: "100%", gap: 20, paddingHorizontal: 15 }}>
+      <ScrollView
+        style={{
+          width: "100%",
+          paddingHorizontal: 15,
+          paddingVertical: 80,
+          display: "flex",
+        }}
+      >
+        <View style={{ gap: 20 }}>
           {medicamentos?.map((medicamento) => (
             <View
-              key={medicamento.id}
               style={{
                 backgroundColor: "#fff",
                 borderWidth: 1,
@@ -76,7 +77,6 @@ export default function Medicamentos() {
                     size={20}
                     onPress={() => router.push("/editar-medicamento")}
                   />
-
                   <IconButton
                     icon={() => (
                       <Image
@@ -84,26 +84,33 @@ export default function Medicamentos() {
                         style={{ width: 33, height: 33 }}
                       />
                     )}
+                    loading={isLoading}
+                    disabled={isLoading}
                     size={20}
-                    onPress={() => console.log("Pressed")}
+                    onPress={() => {
+                      console.log("Abrindo BottomSheet...");
+                      bottomSheetRef.current?.open();
+                    }}
                   />
                 </View>
               </View>
             </View>
           ))}
         </View>
+      </ScrollView>
 
-        <FAB
-          label="Adicionar Medicamento"
-          icon="plus"
-          color="#FFF"
-          size="small"
-          style={styles.fab}
-          accessibilityLabel="Botão para adicionar um novo medicamento"
-          onPress={() => router.push("/cadastrar-medicamento")}
-        />
-      </View>
-    </FormProvider>
+      <FAB
+        // label="Adicionar Medicamento"
+        icon="plus"
+        color="#FFF"
+        size="medium"
+        style={styles.fab}
+        accessibilityLabel="Botão para adicionar um novo medicamento"
+        onPress={() => router.push("/cadastrar-medicamento")}
+      />
+
+      {/* <Sheet ref={bottomSheetRef} /> */}
+    </View>
   );
 }
 
@@ -114,20 +121,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  fab: {
+    position: "absolute",
+    right: 40,
+    bottom: 120,
+    backgroundColor: "#66B4B0",
+    borderRadius: 50,
+    elevation: 4,
+  },
   messageContainer: {
     gap: 15,
-  },
-  card: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 16,
-    borderRadius: 5,
-    marginBottom: 8,
-  },
-  nomeMedicamento: {
-    fontSize: 18,
-    fontWeight: "bold",
   },
   text: {
     fontFamily: "GilroyRegular",
@@ -139,13 +142,4 @@ const styles = StyleSheet.create({
     width: 23,
     height: 22,
   },
-  fab: {
-    position: "absolute",
-    right: 40,
-    bottom: 20,
-    backgroundColor: "#66B4B0",
-    borderRadius: 50,
-    elevation: 4,
-  },
-  divider: {},
 });

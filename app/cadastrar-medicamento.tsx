@@ -6,6 +6,7 @@ import {
   medicamentoSchema,
 } from "@/constants/schemas/schemas";
 import { useMutationCadastraMedicamento } from "@/hooks/mutations/useMutationCadastraMedicamento";
+import { queryClient } from "@/service/queryClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 
@@ -25,7 +26,7 @@ export default function Editar() {
     },
   });
 
-  console.log("Erros do formulário:", methods.formState.errors);
+  // console.log("Erros do formulário:", methods.formState.errors);
 
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
@@ -39,6 +40,7 @@ export default function Editar() {
       frequencia: data.frequencia,
       horario: data.horario,
     });
+    await queryClient.invalidateQueries(["medicamentos"]);
     // Toast.show({
     //   type: "success",
     //   text1: "Sucesso",
@@ -135,6 +137,7 @@ export default function Editar() {
                 padding: 5,
               }}
               loading={isLoading}
+              disabled={isLoading}
               onPress={methods.handleSubmit(submit)}
               labelStyle={{ fontFamily: "GilroyBold" }}
             >

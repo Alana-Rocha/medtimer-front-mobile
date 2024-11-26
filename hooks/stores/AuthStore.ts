@@ -22,7 +22,6 @@ export const useAuthStore = create<AuthStoreType>((set, get) => ({
   verificarLogin: async () => {
     const recoveredToken = await getData("token");
     if (!recoveredToken) return router.push("/");
-    console.log(recoveredToken);
     api.defaults.headers.Authorization = `Bearer ${recoveredToken}`;
     const decodedUser = jwtDecode<User>(recoveredToken);
     get().setUser(decodedUser);
