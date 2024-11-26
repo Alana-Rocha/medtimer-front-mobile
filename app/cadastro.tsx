@@ -23,7 +23,7 @@ const Cadastro = () => {
   const { mutateAsync: cadastraUsuario, isLoading } =
     useMutationCadastraUsuario();
 
-    console.log(methods.formState.errors)
+  console.log(methods.formState.errors);
 
   const submit: SubmitHandler<CadastroForm> = async (data) => {
     await cadastraUsuario({
@@ -52,49 +52,70 @@ const Cadastro = () => {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          gap: 20,
         }}
       >
-        <View style={{ gap: 10, alignItems: "center" }}>
+        <View style={{ alignItems: "center" }}>
           <Image
             source={require("../assets/images/logo.png")}
             style={{ width: 230, height: 180 }}
           />
+        </View>
 
-          <View>
-            <Text
-              style={{
-                fontFamily: "GilroyBold",
-                fontSize: 30,
-                color: "#60FFCB",
-              }}
-            >
-              Criar Cadastro
-            </Text>
-          </View>
-
-          <View style={{ gap: 5 }}>
-            <Input label="Nome" id="nome" />
-            <DataSelect />
-            <Input label="E-mail" id="email" />
-            <Input label="Senha" id="senha" secureTextEntry={true} />
-          </View>
-          <Button
-            mode="contained"
-            buttonColor="#66B4B0"
-            textColor="#fff"
+        <View>
+          <Text
             style={{
-              width: 300,
-              borderRadius: 4,
-              elevation: 4,
-              padding: 5,
+              fontFamily: "GilroyBold",
+              fontSize: 30,
+              color: "#60FFCB",
             }}
-            loading={isLoading}
-            disabled={isLoading}
-            onPress={methods.handleSubmit(submit)}
-            labelStyle={{ fontFamily: "GilroyBold" }}
           >
-            Continuar
-          </Button>
+            Criar Cadastro
+          </Text>
+        </View>
+
+        <View style={{ gap: 10 }}>
+          <Input label="Nome" id="nome" />
+          <DataSelect />
+          <Input label="E-mail" id="email" />
+          <Input label="Senha" id="senha" secureTextEntry={true} />
+
+          <View style={{ gap: 10 }}>
+            <Button
+              mode="contained"
+              buttonColor="#EC8568"
+              textColor="#fff"
+              style={{
+                width: 300,
+                borderRadius: 4,
+                elevation: 4,
+                padding: 5,
+              }}
+              loading={isLoading}
+              disabled={isLoading}
+              onPress={methods.handleSubmit(submit)}
+              labelStyle={{ fontFamily: "GilroyBold" }}
+            >
+              Continuar
+            </Button>
+            <Button
+              mode="contained"
+              buttonColor="#66B4B0"
+              textColor="#fff"
+              style={{
+                width: 300,
+                borderRadius: 4,
+                elevation: 4,
+                padding: 5,
+              }}
+              loading={isLoading}
+              disabled={isLoading}
+              onPress={() => router.push("/")}
+              labelStyle={{ fontFamily: "GilroyBold" }}
+            >
+              Voltar
+            </Button>
+          </View>
         </View>
       </View>
     </FormProvider>

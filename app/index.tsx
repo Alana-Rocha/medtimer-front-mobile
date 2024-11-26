@@ -43,7 +43,7 @@ export default function HomeScreen() {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
-          gap: 25,
+          gap: 20,
         }}
       >
         <View
@@ -58,7 +58,7 @@ export default function HomeScreen() {
             style={{ width: 230, height: 180 }}
           />
         </View>
-        <View style={{ gap: 15, alignItems: "center" }}>
+        <View style={{ gap: 10, alignItems: "center" }}>
           <Text
             style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
           >
