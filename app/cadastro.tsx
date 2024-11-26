@@ -53,6 +53,7 @@ const Cadastro = () => {
           justifyContent: "center",
           alignItems: "center",
           gap: 20,
+          paddingHorizontal: 35,
         }}
       >
         <View style={{ alignItems: "center" }}>
@@ -80,42 +81,38 @@ const Cadastro = () => {
           <Input label="E-mail" id="email" />
           <Input label="Senha" id="senha" secureTextEntry={true} />
 
-          <View style={{ gap: 10 }}>
-            <Button
-              mode="contained"
-              buttonColor="#EC8568"
-              textColor="#fff"
-              style={{
-                width: 300,
-                borderRadius: 4,
-                elevation: 4,
-                padding: 5,
-              }}
-              loading={isLoading}
-              disabled={isLoading}
-              onPress={methods.handleSubmit(submit)}
-              labelStyle={{ fontFamily: "GilroyBold" }}
-            >
-              Continuar
-            </Button>
-            <Button
-              mode="contained"
-              buttonColor="#66B4B0"
-              textColor="#fff"
-              style={{
-                width: 300,
-                borderRadius: 4,
-                elevation: 4,
-                padding: 5,
-              }}
-              loading={isLoading}
-              disabled={isLoading}
-              onPress={() => router.push("/")}
-              labelStyle={{ fontFamily: "GilroyBold" }}
-            >
-              Voltar
-            </Button>
-          </View>
+          <Button
+            mode="contained"
+            buttonColor="#EC8568"
+            textColor="#fff"
+            style={{
+              borderRadius: 4,
+              elevation: 4,
+              padding: 5,
+            }}
+            loading={isLoading}
+            disabled={isLoading}
+            onPress={methods.handleSubmit(submit)}
+            labelStyle={{ fontFamily: "GilroyBold" }}
+          >
+            Cadastrar
+          </Button>
+          <Button
+            mode="contained"
+            buttonColor="#66B4B0"
+            textColor="#fff"
+            style={{
+              borderRadius: 4,
+              elevation: 4,
+              padding: 5,
+            }}
+            loading={isLoading}
+            disabled={isLoading}
+            onPress={() => router.push("/")}
+            labelStyle={{ fontFamily: "GilroyBold" }}
+          >
+            Voltar
+          </Button>
         </View>
       </View>
     </FormProvider>

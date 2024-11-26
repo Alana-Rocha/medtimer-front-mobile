@@ -1,4 +1,4 @@
-import { InputCadastro } from "@/components/form/InputCadastro";
+import { Input } from "@/components/form/Input";
 import { Select } from "@/components/form/Select";
 import { TimeSelect } from "@/components/form/TimeSelect";
 import {
@@ -70,15 +70,15 @@ export default function Editar() {
           width: "100%",
           height: "100%",
           justifyContent: "center",
-          alignItems: "center",
           gap: 50,
+          paddingHorizontal: 35,
         }}
       >
         <View style={{ gap: 10, flexDirection: "row" }}>
           <Text
             style={{
               fontFamily: "GilroyBold",
-              fontSize: 30,
+              fontSize: 26,
               color: "#EC8568",
             }}
           >
@@ -91,7 +91,7 @@ export default function Editar() {
           >
             <Image
               source={require("../assets/images/cadastrar-medicamento.png")}
-              style={{ width: 35, height: 35 }}
+              style={{ width: 32, height: 32 }}
             />
           </View>
         </View>
@@ -101,29 +101,32 @@ export default function Editar() {
             gap: 20,
           }}
         >
-          <InputCadastro
+          <Input
             id="nome"
             label="Nome do Medicamento"
-            style={{ width: "100%" }}
+
+            // style={{ width: "100%" }}
           />
-          <InputCadastro
+          <Input
             id="descricao"
             label="Descrição"
             placeholder="Remédio para dor de cabeça"
           />
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <InputCadastro
-              id="duracao"
-              label="Intervalo (dias)"
-              style={{ width: 40 }}
-            />
+            <TimeSelect id="horario" />
+
             <Select id="frequencia" options={listaFrequencias} />
           </View>
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <InputCadastro id="dosagem" label="Dosagem (comprimidos)" />
-            <TimeSelect id="horario" />
+            <Input
+              id="duracao"
+              label="Duração (dias)"
+              // style={{ width: 50 }}
+              width={150}
+            />
+            <Input id="dosagem" label="Dosagem" width={182} />
           </View>
 
           <View style={{ gap: 10, alignItems: "center" }}>

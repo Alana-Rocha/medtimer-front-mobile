@@ -20,12 +20,13 @@ export const Select = ({ id, options }: SelectProps) => {
     return (
       <View
         style={{
+          // minWidth: 200,
+          width: 182,
           paddingVertical: 10,
           paddingHorizontal: 15,
-          backgroundColor: "#E8E1C5",
+          backgroundColor: "#fff",
           borderRadius: 2,
           justifyContent: "center",
-          width: 220,
         }}
       >
         <Text
@@ -57,7 +58,9 @@ export const Select = ({ id, options }: SelectProps) => {
           opacity: 1,
         }}
       >
-        <Text style={{ color: "#151E26", fontFamily: 'GilroyRegular' }}>{label}</Text>
+        <Text style={{ color: "#151E26", fontFamily: "GilroyRegular" }}>
+          {label}
+        </Text>
       </View>
     );
   };

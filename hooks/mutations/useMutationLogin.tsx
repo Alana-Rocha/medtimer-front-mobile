@@ -1,9 +1,9 @@
 import { api } from "@/service/api";
 import { setData } from "@/service/storage";
 import { useMutation } from "@tanstack/react-query";
+import { router } from "expo-router";
 import { jwtDecode } from "jwt-decode";
 import { useAuthStore, User } from "../stores/AuthStore";
-import { router } from "expo-router";
 
 type LoginRequest = {
   email: string;
@@ -34,6 +34,5 @@ export const useMutationLogin = () => {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       return router.push("/");
     },
-    onError: (error) => console.log(error),
   });
 };

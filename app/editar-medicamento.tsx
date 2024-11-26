@@ -1,4 +1,4 @@
-import { InputCadastro } from "@/components/form/InputCadastro";
+import { Input } from "@/components/form/Input";
 import { Select } from "@/components/form/Select";
 import { TimeSelect } from "@/components/form/TimeSelect";
 import {
@@ -105,19 +105,19 @@ export default function Medicamentos() {
             gap: 20,
           }}
         >
-          <InputCadastro
+          <Input
             id="nome"
             label="Nome do Medicamento"
             style={{ width: "100%" }}
           />
-          <InputCadastro
+          <Input
             id="descricao"
             label="Descrição"
             placeholder="Remédio para dor de cabeça"
           />
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <InputCadastro
+            <Input
               id="duracao"
               label="Intervalo (dias)"
               style={{ width: 40 }}
@@ -126,7 +126,7 @@ export default function Medicamentos() {
           </View>
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <InputCadastro id="dosagem" label="Dosagem (comprimidos)" />
+            <Input id="dosagem" label="Dosagem (comprimidos)" />
             <TimeSelect id="horario" />
           </View>
 

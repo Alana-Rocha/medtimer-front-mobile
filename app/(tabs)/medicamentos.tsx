@@ -111,7 +111,7 @@ export default function Medicamentos() {
       accessibilityLabel="Botão para adicionar um novo medicamento"
       onPress={() => router.push("/cadastrar-medicamento")}
     />
-       <Sheet ref={bottomSheetRef} />
+       {/* <Sheet ref={bottomSheetRef} /> */}
   </View>
   
   );

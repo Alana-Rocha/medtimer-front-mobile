@@ -1,15 +1,21 @@
 import * as React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { Text, View } from "react-native";
+import { DimensionValue, Text, View } from "react-native";
 import { TextInput, TextInputProps } from "react-native-paper";
 
 type InputProps = {
   id: string;
   label: string;
   secureTextEntry?: boolean;
+  width?: DimensionValue;
 };
 
-export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProps) => {
+export const Input = ({
+  id,
+  label,
+  secureTextEntry,
+  width,
+}: InputProps & TextInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -26,7 +32,7 @@ export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProp
             value={field.value}
             secureTextEntry={secureTextEntry}
             outlineColor="#31658B"
-            style={{ width: 300, backgroundColor: "#E8E1C5" }}
+            style={{ width: width, backgroundColor: "#fff" }}
             activeOutlineColor="#000"
             onChangeText={field.onChange}
           />
@@ -40,4 +46,3 @@ export const Input = ({ id, label, secureTextEntry }: InputProps & TextInputProp
     />
   );
 };
-

@@ -44,6 +44,7 @@ export default function HomeScreen() {
           justifyContent: "center",
           alignItems: "center",
           gap: 20,
+          paddingHorizontal: 35,
         }}
       >
         <View
@@ -58,9 +59,20 @@ export default function HomeScreen() {
             style={{ width: 230, height: 180 }}
           />
         </View>
-        <View style={{ gap: 10, alignItems: "center" }}>
+
+        <View
+          style={{
+            gap: 15,
+            // alignItems: "center",
+          }}
+        >
           <Text
-            style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
+            style={{
+              fontFamily: "GilroyBold",
+              fontSize: 30,
+              color: "#60FFCB",
+              textAlign: "center",
+            }}
           >
             Faça seu Login
           </Text>
@@ -71,7 +83,7 @@ export default function HomeScreen() {
             buttonColor="#66B4B0"
             textColor="#fff"
             style={{
-              width: 300,
+              width: 340,
               borderRadius: 4,
               elevation: 4,
               padding: 5,

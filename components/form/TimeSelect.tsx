@@ -9,7 +9,7 @@ type TimeSelectProps = {
 
 export const TimeSelect = ({ id }: TimeSelectProps) => {
   const [visible, setVisible] = useState(false);
-  const [time, setTime] = useState<string>("Selecione um horário");
+  const [time, setTime] = useState<string>("Horário");
   const { control } = useFormContext();
 
   const onDismiss = () => {
@@ -63,11 +63,11 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
 
 const styles = StyleSheet.create({
   timePicker: {
-    width: 220,
+    width: 150,
     padding: 18.8,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E8E1C5",
+    backgroundColor: "#fff",
     borderRadius: 2,
   },
   timeText: {

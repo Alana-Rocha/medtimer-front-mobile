@@ -1,8 +1,7 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 import { View } from "react-native";
 import { DatePickerInput } from "react-native-paper-dates";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useFormContext } from "react-hook-form";
 
 export default function DataSelect() {
   const { setValue, register } = useFormContext();
@@ -23,19 +22,17 @@ export default function DataSelect() {
   };
 
   return (
-    <SafeAreaProvider>
-      <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
-        <DatePickerInput
-          id="nascimento"
-          locale="pt"
-          withModal={false}
-          label="Data de Nascimento"
-          value={inputDate}
-          style={{backgroundColor: "#E8E1C5"}}
-          onChange={handleDateChange}
-          inputMode="start"
-        />
-      </View>
-    </SafeAreaProvider>
+    <View style={{ height: 50 }}>
+      <DatePickerInput
+        id="nascimento"
+        locale="pt"
+        withModal={false}
+        label="Data de Nascimento"
+        value={inputDate}
+        style={{ width: "100%", backgroundColor: "#fff" }}
+        onChange={handleDateChange}
+        inputMode="start"
+      />
+    </View>
   );
 }
