@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { DimensionValue, Text, View } from "react-native";
 import { TextInput, TextInputProps } from "react-native-paper";
@@ -13,10 +14,15 @@ type InputProps = {
 export const Input = ({
   id,
   label,
-  secureTextEntry,
+  secureTextEntry = false,
   width,
 }: InputProps & TextInputProps) => {
   const { control } = useFormContext();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
 
   return (
     <Controller
@@ -30,11 +36,20 @@ export const Input = ({
             onBlur={field.onBlur}
             label={label}
             value={field.value}
-            secureTextEntry={secureTextEntry}
+            secureTextEntry={secureTextEntry && !showPassword}
             outlineColor="#31658B"
             style={{ width: width, backgroundColor: "#fff" }}
             activeOutlineColor="#000"
             onChangeText={field.onChange}
+            right={
+              secureTextEntry && (
+                <TextInput.Icon
+                  icon={showPassword ? "eye-off" : "eye"} 
+                  color="#66B4B0"
+                  onPress={handleTogglePassword}
+                />
+              )
+            }
           />
           {error && (
             <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
