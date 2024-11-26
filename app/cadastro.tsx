@@ -43,6 +43,7 @@ const Cadastro = () => {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          width: "100%",
           gap: 20,
           paddingHorizontal: 35,
         }}
@@ -67,10 +68,11 @@ const Cadastro = () => {
         </View>
 
         <View style={{ gap: 10 }}>
-          <Input label="Nome" id="nome" />
+          <Input label="Nome" id="nome" width="100%" />
           <DataSelect />
-          <Input label="E-mail" id="email" />
+          <Input label="E-mail" id="email" width="100%" />
           <Input
+            width="100%"
             label="Senha"
             id="senha"
             secureTextEntry={true}
