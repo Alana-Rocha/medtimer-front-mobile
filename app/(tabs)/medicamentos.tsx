@@ -12,22 +12,21 @@ export default function Medicamentos() {
 
   return (
     <View style={styles.container}>
-      {medicamentos?.length == 0 && (
-        <View style={styles.messageContainer}>
-          <Text style={styles.text}>
-            Parece que você não possui nenhum {"\n"} medicamento cadastrado...
-          </Text>
-          <Text style={styles.text}>
-            Clique no botão{" "}
-            <Image
-              source={require("../../assets/images/plus.png")}
-              style={styles.image}
-            />{" "}
-            para começar!
-          </Text>
-        </View>
-      )}
-
+    {medicamentos?.length == 0 ? (
+      <View style={styles.messageContainer}>
+        <Text style={styles.text}>
+          Parece que você não possui nenhum {"\n"} medicamento cadastrado...
+        </Text>
+        <Text style={styles.text}>
+          Clique no botão{" "}
+          <Image
+            source={require("../../assets/images/plus.png")}
+            style={styles.image}
+          />{" "}
+          para começar!
+        </Text>
+      </View>
+    ) : (
       <ScrollView
         style={{
           width: "100%",
@@ -37,14 +36,6 @@ export default function Medicamentos() {
         }}
       >
         <View style={{ gap: 20 }}>
-          <View style={{ paddingVertical: 10 }}>
-            <Text
-              variant="displayMedium"
-              style={{ fontSize: 35, padding: 3, color: "#645E5E" }}
-            >
-              Olá, Alana!
-            </Text>
-          </View>
           {medicamentos?.map((medicamento) => (
             <View
               style={{
@@ -54,6 +45,7 @@ export default function Medicamentos() {
                 padding: 7,
                 borderRadius: 5,
               }}
+              key={medicamento.nome}
             >
               <View
                 style={{
@@ -109,28 +101,28 @@ export default function Medicamentos() {
           ))}
         </View>
       </ScrollView>
-
-      <FAB
-        // label="Adicionar Medicamento"
-        icon="plus"
-        color="#FFF"
-        size="medium"
-        style={styles.fab}
-        accessibilityLabel="Botão para adicionar um novo medicamento"
-        onPress={() => router.push("/cadastrar-medicamento")}
-      />
-
-      {/* <Sheet ref={bottomSheetRef} /> */}
-    </View>
+    )}
+  
+    <FAB
+      icon="plus"
+      color="#FFF"
+      size="medium"
+      style={styles.fab}
+      accessibilityLabel="Botão para adicionar um novo medicamento"
+      onPress={() => router.push("/cadastrar-medicamento")}
+    />
+       {/* <Sheet ref={bottomSheetRef} /> */}
+  </View>
+  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1, 
     backgroundColor: "#FFF",
-    height: "100%",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center", 
   },
   fab: {
     position: "absolute",
@@ -141,6 +133,8 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   messageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
     gap: 15,
   },
   text: {
