@@ -1,5 +1,4 @@
 import { theme } from "@/constants/theme";
-import { useAuthStore } from "@/hooks/stores/AuthStore";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { queryClient } from "@/service/queryClient";
 import {
@@ -11,7 +10,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
@@ -24,18 +23,6 @@ export default function RootLayout() {
     GilroyRegular: require("../assets/fonts/Gilroy-Regular.ttf"),
     GilroyBold: require("../assets/fonts/Gilroy-Bold.ttf"),
   });
-  const [loading, setLoading] = useState(true);
-  const verificarLogin = useAuthStore((s) => s.verificarLogin);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await verificarLogin();
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [verificarLogin, setLoading]);
 
   useEffect(() => {
     if (loaded) {
@@ -43,7 +30,7 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded && loading) {
+  if (!loaded) {
     return null;
   }
 

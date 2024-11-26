@@ -21,7 +21,6 @@ export const cadastroSchema = z.object({
       }
     )
     .or(z.literal("")),
-
   senha: z.string().min(6, "Deve ter no mínimo 6 caracteres"),
 });
 

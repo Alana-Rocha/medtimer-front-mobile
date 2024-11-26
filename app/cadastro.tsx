@@ -8,7 +8,6 @@ import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
 import { Button } from "react-native-paper";
-import Toast from "react-native-toast-message";
 
 const Cadastro = () => {
   const router = useRouter();
@@ -21,7 +20,10 @@ const Cadastro = () => {
       senha: "",
     },
   });
-  const { mutateAsync: cadastraUsuario } = useMutationCadastraUsuario();
+  const { mutateAsync: cadastraUsuario, isLoading } =
+    useMutationCadastraUsuario();
+
+    console.log(methods.formState.errors)
 
   const submit: SubmitHandler<CadastroForm> = async (data) => {
     await cadastraUsuario({
@@ -30,15 +32,15 @@ const Cadastro = () => {
       senha: data.senha,
       dataNascimento: data.nascimento,
     });
-    Toast.show({
-      type: "success",
-      text1: "Sucesso",
-      text2: "Cadastro realizado!",
-      visibilityTime: 4000,
-      autoHide: true,
-      topOffset: 30,
-      bottomOffset: 40,
-    });
+    // Toast.show({
+    //   type: "success",
+    //   text1: "Sucesso",
+    //   text2: "Cadastro realizado!",
+    //   visibilityTime: 4000,
+    //   autoHide: true,
+    //   topOffset: 30,
+    //   bottomOffset: 40,
+    // });
     router.push("/apresentacao");
   };
 
@@ -86,6 +88,8 @@ const Cadastro = () => {
               elevation: 4,
               padding: 5,
             }}
+            loading={isLoading}
+            disabled={isLoading}
             onPress={methods.handleSubmit(submit)}
             labelStyle={{ fontFamily: "GilroyBold" }}
           >

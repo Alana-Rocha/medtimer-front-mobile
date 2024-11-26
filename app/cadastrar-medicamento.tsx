@@ -41,6 +41,7 @@ export default function Editar() {
       horario: data.horario,
     });
     await queryClient.invalidateQueries(["medicamentos"]);
+    router.back();
     // Toast.show({
     //   type: "success",
     //   text1: "Sucesso",
