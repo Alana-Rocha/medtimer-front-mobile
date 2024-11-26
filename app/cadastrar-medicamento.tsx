@@ -101,12 +101,7 @@ export default function Editar() {
             gap: 20,
           }}
         >
-          <Input
-            id="nome"
-            label="Nome do Medicamento"
-
-            // style={{ width: "100%" }}
-          />
+          <Input id="nome" label="Nome do Medicamento" />
           <Input
             id="descricao"
             label="Descrição"

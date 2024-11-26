@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import Toast from "react-native-toast-message";
 
 export default function HomeScreen() {
@@ -76,8 +76,14 @@ export default function HomeScreen() {
           >
             Faça seu Login
           </Text>
-          <Input label="E-mail" id="email" />
-          <Input label="Senha" id="senha" secureTextEntry={true} />
+          <Input label="E-mail" id="email" width="100%" />
+          <Input
+            label="Senha"
+            id="senha"
+            secureTextEntry={true}
+            width="100%"
+            right={<TextInput.Icon icon="eye" color="#000" />}
+          />
           <Button
             mode="contained"
             buttonColor="#66B4B0"

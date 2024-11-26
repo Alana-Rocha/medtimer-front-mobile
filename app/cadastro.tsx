@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 
 const Cadastro = () => {
   const router = useRouter();
@@ -32,15 +32,6 @@ const Cadastro = () => {
       senha: data.senha,
       dataNascimento: data.nascimento,
     });
-    // Toast.show({
-    //   type: "success",
-    //   text1: "Sucesso",
-    //   text2: "Cadastro realizado!",
-    //   visibilityTime: 4000,
-    //   autoHide: true,
-    //   topOffset: 30,
-    //   bottomOffset: 40,
-    // });
     router.push("/apresentacao");
   };
 
@@ -79,7 +70,12 @@ const Cadastro = () => {
           <Input label="Nome" id="nome" />
           <DataSelect />
           <Input label="E-mail" id="email" />
-          <Input label="Senha" id="senha" secureTextEntry={true} />
+          <Input
+            label="Senha"
+            id="senha"
+            secureTextEntry={true}
+            right={<TextInput.Icon icon="eye" />}
+          />
 
           <Button
             mode="contained"

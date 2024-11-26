@@ -19,6 +19,8 @@ export default function Perfil() {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          width: "100%",
+          paddingHorizontal: 30,
           gap: 25,
         }}
       >
@@ -35,15 +37,17 @@ export default function Perfil() {
         </Text>
 
         <View style={{ gap: 10 }}>
-          <Input label="alanarodrigues.rocha@gmail.com" id="email" />
-          <Input label="07/12/2004" id="idade" />
-        </View>
-
-        <View>
+          <Input
+            mode="outlined"
+            label="alanarodrigues.rocha@gmail.com"
+            id="email"
+            width="100%"
+          />
+          <Input label="07/12/2004" id="idade" width="100%" />
           <Button
             textColor="#fff"
             buttonColor="#a32121"
-            style={{ width: 300, borderRadius: 4, padding: 4 }}
+            style={{ borderRadius: 4, padding: 4 }}
             onPress={() => router.push("/")}
           >
             Sair
