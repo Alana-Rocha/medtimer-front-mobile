@@ -21,7 +21,7 @@ export const Select = ({ id, options }: SelectProps) => {
       <View
         style={{
           // minWidth: 200,
-          width: 158,
+          width: 182,
           paddingVertical: 10,
           paddingHorizontal: 15,
           backgroundColor: "#fff",

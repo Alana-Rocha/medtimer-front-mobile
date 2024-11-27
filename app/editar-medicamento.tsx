@@ -116,7 +116,7 @@ export default function Medicamentos() {
 
           <View style={{ flexDirection: "row", gap: 7 }}>
             <Input id="duracao" label="Duração (dias)" width={150} />
-            <Input id="dosagem" label="Dosagem" width={158} />
+            <Input id="dosagem" label="Dosagem" width={182} />
           </View>
 
           <View style={{ gap: 10, alignItems: "center" }}>

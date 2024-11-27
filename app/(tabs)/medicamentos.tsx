@@ -23,7 +23,7 @@ export default function Medicamentos() {
             <Image
               source={require("../../assets/images/plus.png")}
               style={styles.image}
-            />{" "}
+            />
             <Text style={styles.text}>para começar!</Text>
           </View>
         </View>
