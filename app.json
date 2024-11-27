@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "moodify-pi",
-    "slug": "moodify-pi",
+    "name": "MedTimer",
+    "slug": "medtimer",
     "version": "1.0.0",
     "orientation": "portrait",
     "newArchEnabled": true,
@@ -21,14 +21,14 @@
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.lucasmendes.moodifypi"
+      "package": "com.lucasmendes.medtimer"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/logo.png"
     },
-    "plugins": ["expo-router"],
+    "plugins": ["expo-router", "expo-build-properties"],
     "experiments": {
       "typedRoutes": true
     }
