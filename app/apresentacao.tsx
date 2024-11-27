@@ -1,7 +1,7 @@
+import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import { router } from "expo-router";
 
 const Apresentacao = () => {
   // const navigation = useNavigation();
@@ -16,13 +16,13 @@ const Apresentacao = () => {
     {
       title: "Cadastre seus medicamentos",
       description:
-        "No MedTimer, é fácil registrar todos os medicamentos que você precisa tomar. Basta adicionar o nome, a dosagem e a frequência, e nós cuidaremos do resto! Assim, você tem um controle mais seguro e organizado de todos os seus remédios.",
+        "No MedTimer, é fácil registrar todos os medicamentos que você precisa tomar. Basta adicionar o nome, a dosagem e a frequência. Assim, você tem um controle mais seguro e organizado de todos os seus remédios.",
       image: require("../assets/images/slide2.png"),
     },
     {
       title: "Lembretes na hora certa",
       description:
-        "Com nossos lembretes personalizados, você receberá notificações no momento exato de cada dose. Nunca mais perca um horário importante! Deixe o MedTimer te ajudar a manter sua saúde em dia, sem complicações.",
+        "Com nossos lembretes personalizados, você poderá consultar todas as informações relacionadas ao seu medicamento. Nunca mais perca um horário importante! Deixe o MedTimer te ajudar a manter sua saúde em dia, sem complicações.",
       image: require("../assets/images/slide3.png"),
     },
   ];
@@ -110,6 +110,7 @@ const Apresentacao = () => {
       </Animated.View>
 
       <Animated.Image
+        key={currentSlide}
         source={slides[currentSlide].image}
         style={{
           width: 330,
@@ -120,18 +121,17 @@ const Apresentacao = () => {
       />
 
       <PaginationDots />
-
-      <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 30 }}>
         <Button
           mode="contained"
           buttonColor="#66B4B0"
           textColor="#fff"
           onPress={handleNextSlide}
           style={{
-            // width: 140,
-            padding: 10,
+            width: 140,
             borderRadius: 50,
             elevation: 4,
+            padding: 4,
           }}
           labelStyle={{ fontFamily: "GilroyBold" }}
         >
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   paginationContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 50,
   },
   dot: {
     width: 12,

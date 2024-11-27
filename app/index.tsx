@@ -26,7 +26,7 @@ export default function HomeScreen() {
     Toast.show({
       type: "success",
       text1: "Sucesso",
-      text2: "Cadastro realizado!",
+      text2: "Login realizado!",
       visibilityTime: 4000,
       autoHide: true,
       topOffset: 30,
@@ -100,7 +100,10 @@ export default function HomeScreen() {
           >
             Continuar
           </Button>
-          <Button textColor="#E8E1C5" onPress={() => router.push("/cadastro")}>
+          <Button
+            textColor="#E8E1C5"
+            onPress={() => router.push("/cadastrar-usuario")}
+          >
             Não possui cadastro? Criar cadastro {">>"}
           </Button>
         </View>

@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 export default function Medicamentos() {
   const router = useRouter();
@@ -45,6 +46,15 @@ export default function Medicamentos() {
       duracao: data.duracao,
       frequencia: data.frequencia,
       horario: data.horario,
+    });
+    Toast.show({
+      type: "success",
+      text1: "Sucesso",
+      text2: "Medicamento editado com sucesso!",
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 30,
+      bottomOffset: 40,
     });
   };
 
@@ -79,7 +89,7 @@ export default function Medicamentos() {
           <Text
             style={{
               fontFamily: "GilroyBold",
-              fontSize: 22,
+              fontSize: 25,
               color: "#EC8568",
             }}
           >

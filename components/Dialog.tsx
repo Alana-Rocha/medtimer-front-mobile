@@ -1,16 +1,18 @@
 import * as React from "react";
 import { Dialog, Portal, Text } from "react-native-paper";
 
-const DialogToast = () => {
-  const [visible, setVisible] = React.useState(false);
+type DialogProps = {
+  label: string;
+  visible: boolean;
+  onDismiss: () => void;
+};
 
-  const hideDialog = () => setVisible(false);
-
+const DialogToast = ({ label, visible, onDismiss }: DialogProps) => {
   return (
     <Portal>
-      <Dialog visible={visible} onDismiss={hideDialog}>
+      <Dialog visible={visible} onDismiss={onDismiss}>
         <Dialog.Content>
-          <Text variant="bodyMedium">This is simple dialog</Text>
+          <Text variant="bodyMedium">{label}</Text>
         </Dialog.Content>
       </Dialog>
     </Portal>

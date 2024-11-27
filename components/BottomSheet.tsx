@@ -2,7 +2,7 @@ import { ConsultaMedicamentoResponse } from "@/hooks/querys/useQueryConsultaMedi
 import { horariosMedicamento } from "@/utils/horariosMedicamento";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { forwardRef, useCallback, useImperativeHandle } from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Portal, Text } from "react-native-paper";
 
 export type SheetRef = {
@@ -68,10 +68,10 @@ export const Sheet = forwardRef<SheetRef, SheetProps>(
                   {medicamento?.nome}
                 </Text>
                 <View>
-                  {/* <Image
+                  <Image
                     source={require("../assets/images/remedio.png")}
                     style={{ width: 25, height: 25 }}
-                  /> */}
+                  />
                 </View>
               </View>
 
@@ -131,13 +131,16 @@ export const Sheet = forwardRef<SheetRef, SheetProps>(
                 </Text>
               </View>
 
-              <View style={styles.box}>
+              <View style={{ ...styles.box, alignItems: "center" }}>
                 <Text variant="displayMedium" style={styles.text}>
                   Horários:
                 </Text>
                 <Text
                   variant="displayMedium"
-                  style={{ ...styles.text, fontFamily: "GilroyBold" }}
+                  style={{
+                    fontSize: 17,
+                    fontFamily: "GilroyBold",
+                  }}
                 >
                   {horariosMedicamento(
                     medicamento?.horario,
