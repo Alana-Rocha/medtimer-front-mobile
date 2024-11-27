@@ -5,17 +5,18 @@ import { jwtDecode } from "jwt-decode";
 import { create } from "zustand";
 
 export type User = {
-  email: string;
+  sub: string;
 };
 
 type AuthStoreType = {
-  user?: User;
+  user: User;
   setUser: (user: User) => void;
   verificarLogin: () => Promise<boolean>;
   logout: () => Promise<void>;
 };
 
 export const useAuthStore = create<AuthStoreType>((set, get) => ({
+  user: undefined!,
   setUser: (user) => {
     set(() => ({ user }));
   },
@@ -25,7 +26,7 @@ export const useAuthStore = create<AuthStoreType>((set, get) => ({
     api.defaults.headers.Authorization = `Bearer ${recoveredToken}`;
     const decodedUser = jwtDecode<User>(recoveredToken);
     get().setUser(decodedUser);
-    return true
+    return true;
   },
   logout: async () => {
     await removeData("token");

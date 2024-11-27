@@ -51,7 +51,7 @@ export const TimeSelect = ({ id }: TimeSelectProps) => {
               onConfirm({ hours, minutes });
               field.onChange(formattedTime);
             }}
-            hours={12}
+            hours={0}
             minutes={0}
             label="Selecione um horário"
           />
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     color: "#58545A",
     fontSize: 16,
     fontWeight: "500",
-    marginRight: 28
+    marginRight: 28,
   },
   errorText: {
     color: "red",

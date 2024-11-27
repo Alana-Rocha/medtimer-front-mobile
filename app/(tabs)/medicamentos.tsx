@@ -3,6 +3,7 @@ import {
   ConsultaMedicamentoResponse,
   useQueryConsultaMedicamento,
 } from "@/hooks/querys/useQueryConsultaMedicamentos";
+import { useEditarMedicamentoStore } from "@/hooks/stores/EditarMedicamento";
 import { useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
@@ -11,7 +12,7 @@ import { FAB, IconButton, Text } from "react-native-paper";
 export default function Medicamentos() {
   const [selectedMedicamento, setSelectedMedicamento] =
     useState<ConsultaMedicamentoResponse | null>(null);
-
+  const setMedicamento = useEditarMedicamentoStore((s) => s.setMedicamento);
   const router = useRouter();
   const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
   const bottomSheetRef = useRef<SheetRef>(null);
@@ -103,7 +104,10 @@ export default function Medicamentos() {
                         />
                       )}
                       size={20}
-                      onPress={() => router.push("/editar-medicamento")}
+                      onPress={() => {
+                        setMedicamento(medicamento);
+                        router.push("/editar-medicamento");
+                      }}
                     />
                     <IconButton
                       icon={() => (

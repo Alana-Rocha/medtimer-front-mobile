@@ -2,17 +2,9 @@ import { api } from "@/service/api";
 import { ApiError } from "@/types/error";
 import { useMutation } from "@tanstack/react-query";
 import Toast from "react-native-toast-message";
+import { ConsultaMedicamentoResponse } from "../querys/useQueryConsultaMedicamentos";
 
-export type MedicamentoEditarRequest = {
-  nome: string;
-  descricao: string;
-  dosagem: number;
-  duracao: number;
-  frequencia: number;
-  horario: string;
-};
-
-const editarMedicamento = async (data: MedicamentoEditarRequest) => {
+const editarMedicamento = async (data: ConsultaMedicamentoResponse) => {
   await api.put("medicamento/editar", {
     ...data,
   });

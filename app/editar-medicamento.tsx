@@ -6,12 +6,13 @@ import {
   MedicamentoForm,
   medicamentoSchema,
 } from "@/constants/schemas/schemas";
-import { useMutationCadastraMedicamento } from "@/hooks/mutations/useMutationCadastraMedicamento";
-import { ConsultaMedicamentoResponse } from "@/hooks/querys/useQueryConsultaMedicamentos";
+import { useMutationEditarMedicamento } from "@/hooks/mutations/useMutationEditarMedicamento";
+import { useEditarMedicamentoStore } from "@/hooks/stores/EditarMedicamento";
+import { queryClient } from "@/service/queryClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 
-import React, { useState } from "react";
+import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, View } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -19,18 +20,25 @@ import Toast from "react-native-toast-message";
 
 export default function Medicamentos() {
   const router = useRouter();
-  const [medicamento, setMedicamento] = useState(
-    {} as ConsultaMedicamentoResponse
-  );
 
-  const { mutateAsync: cadastrarMedicamento, isLoading } =
-    useMutationCadastraMedicamento();
+  const medicamento = useEditarMedicamentoStore((s) => s.medicamento);
+  console.log({ medicamento });
+  const { mutateAsync: editarMedicamento, isLoading } =
+    useMutationEditarMedicamento();
+
+  const listaFrequencias = [
+    { value: 1, label: "1x ao dia" },
+    { value: 2, label: "2x ao dia" },
+    { value: 3, label: "3x ao dia" },
+    { value: 4, label: "4x ao dia" },
+    { value: 5, label: "5x ao dia" },
+  ];
 
   const methods = useForm<EditarMedicamentoForm>({
     values: {
       descricao: medicamento?.descricao || "",
       dosagem: medicamento?.dosagem,
-      duracao: medicamento.duracao,
+      duracao: medicamento?.duracao,
       frequencia: medicamento?.frequencia,
       horario: medicamento?.horario || "",
       nome: medicamento?.nome || "",
@@ -39,7 +47,8 @@ export default function Medicamentos() {
   });
 
   const submit: SubmitHandler<MedicamentoForm> = async (data) => {
-    await cadastrarMedicamento({
+    await editarMedicamento({
+      id: medicamento.id,
       nome: data.nome,
       descricao: data.descricao,
       dosagem: data.dosagem,
@@ -47,6 +56,7 @@ export default function Medicamentos() {
       frequencia: data.frequencia,
       horario: data.horario,
     });
+    queryClient.invalidateQueries(["medicamentos"]);
     Toast.show({
       type: "success",
       text1: "Sucesso",
@@ -56,15 +66,8 @@ export default function Medicamentos() {
       topOffset: 30,
       bottomOffset: 40,
     });
+    router.replace("/(tabs)/medicamentos");
   };
-
-  const listaFrequencias = [
-    { value: 1, label: "1x ao dia" },
-    { value: 2, label: "2x ao dia" },
-    { value: 3, label: "3x ao dia" },
-    { value: 4, label: "4x ao dia" },
-    { value: 5, label: "5x ao dia" },
-  ];
 
   return (
     <FormProvider {...methods}>
