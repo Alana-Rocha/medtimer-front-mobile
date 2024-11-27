@@ -55,7 +55,7 @@ export default function Medicamentos() {
                 color: "#EC8568",
               }}
             >
-              Meus Medicamentos
+              Meus Medicamentos...
             </Text>
             {medicamentos?.map((medicamento) => (
               <View
