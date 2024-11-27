@@ -1,6 +1,5 @@
 import { SheetRef } from "@/components/BottomSheet";
 import { useQueryConsultaMedicamento } from "@/hooks/querys/useQueryConsultaMedicamentos";
-import { usePushNotifications } from "@/hooks/usePushNotifications";
 import { useRouter } from "expo-router";
 import React, { useRef } from "react";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
@@ -10,8 +9,6 @@ export default function Medicamentos() {
   const router = useRouter();
   const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
   const bottomSheetRef = useRef<SheetRef>(null);
-
-  const { token } = usePushNotifications();
 
   return (
     <View style={styles.container}>

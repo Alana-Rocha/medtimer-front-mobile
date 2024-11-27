@@ -48,9 +48,16 @@ export default function RootLayout() {
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
-      router.push(initialRoute);
     }
-  }, [appIsReady, initialRoute]);
+  }, [appIsReady]);
+
+  useEffect(() => {
+    (async () => {
+      if (appIsReady && loaded) {
+        router.push(initialRoute);
+      }
+    })();
+  }, [loaded, appIsReady]);
 
   if (!loaded || !appIsReady) {
     return null;
