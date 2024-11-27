@@ -9,6 +9,7 @@ export default function Medicamentos() {
   const router = useRouter();
   const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
   const bottomSheetRef = useRef<SheetRef>(null);
+  console.log(medicamentos);
 
   return (
     <View style={styles.container}>
@@ -17,14 +18,14 @@ export default function Medicamentos() {
           <Text style={styles.text}>
             Parece que você não possui nenhum {"\n"} medicamento cadastrado...
           </Text>
-          <Text style={styles.text}>
-            Clique no botão{" "}
-            {/* <Image
+          <View style={{ flexDirection: "row", gap: 3 }}>
+            <Text style={styles.text}>Clique no botão</Text>
+            <Image
               source={require("../../assets/images/plus.png")}
               style={styles.image}
-            />{" "} */}
-            para começar!
-          </Text>
+            />{" "}
+            <Text style={styles.text}>para começar!</Text>
+          </View>
         </View>
       ) : (
         <ScrollView
@@ -146,6 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   image: {
+    marginTop: 4,
     width: 23,
     height: 22,
   },

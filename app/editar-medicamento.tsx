@@ -46,16 +46,6 @@ export default function Medicamentos() {
       frequencia: data.frequencia,
       horario: data.horario,
     });
-    // Toast.show({
-    //   type: "success",
-    //   text1: "Sucesso",
-    //   text2: "Cadastro realizado!",
-    //   visibilityTime: 4000,
-    //   autoHide: true,
-    //   topOffset: 30,
-    //   bottomOffset: 40,
-    // });
-    // router.push("/apresentacao");
   };
 
   const listaFrequencias = [
@@ -74,15 +64,22 @@ export default function Medicamentos() {
           width: "100%",
           height: "100%",
           justifyContent: "center",
-          alignItems: "center",
           gap: 50,
+          paddingHorizontal: 35,
         }}
       >
-        <View style={{ gap: 10, flexDirection: "row" }}>
+        <View
+          style={{
+            gap: 10,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text
             style={{
               fontFamily: "GilroyBold",
-              fontSize: 30,
+              fontSize: 22,
               color: "#EC8568",
             }}
           >
@@ -95,7 +92,7 @@ export default function Medicamentos() {
           >
             <Image
               source={require("../assets/images/cadastrar-medicamento.png")}
-              style={{ width: 35, height: 35 }}
+              style={{ width: 25, height: 25 }}
             />
           </View>
         </View>
@@ -105,11 +102,7 @@ export default function Medicamentos() {
             gap: 20,
           }}
         >
-          <Input
-            id="nome"
-            label="Nome do Medicamento"
-            style={{ width: "100%" }}
-          />
+          <Input id="nome" label="Nome do Medicamento" />
           <Input
             id="descricao"
             label="Descrição"
@@ -117,17 +110,13 @@ export default function Medicamentos() {
           />
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <Input
-              id="duracao"
-              label="Intervalo (dias)"
-              style={{ width: 40 }}
-            />
+            <TimeSelect id="horario" />
             <Select id="frequencia" options={listaFrequencias} />
           </View>
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <Input id="dosagem" label="Dosagem (comprimidos)" />
-            <TimeSelect id="horario" />
+            <Input id="duracao" label="Duração (dias)" width={150} />
+            <Input id="dosagem" label="Dosagem" width={158} />
           </View>
 
           <View style={{ gap: 10, alignItems: "center" }}>
@@ -142,6 +131,7 @@ export default function Medicamentos() {
                 padding: 5,
               }}
               loading={isLoading}
+              disabled={isLoading}
               onPress={methods.handleSubmit(submit)}
               labelStyle={{ fontFamily: "GilroyBold" }}
             >

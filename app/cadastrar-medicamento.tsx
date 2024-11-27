@@ -42,16 +42,6 @@ export default function Editar() {
     });
     await queryClient.invalidateQueries(["medicamentos"]);
     router.back();
-    // Toast.show({
-    //   type: "success",
-    //   text1: "Sucesso",
-    //   text2: "Cadastro realizado!",
-    //   visibilityTime: 4000,
-    //   autoHide: true,
-    //   topOffset: 30,
-    //   bottomOffset: 40,
-    // });
-    // router.push("/apresentacao");
   };
 
   const listaFrequencias = [
@@ -74,11 +64,18 @@ export default function Editar() {
           paddingHorizontal: 35,
         }}
       >
-        <View style={{ gap: 10, flexDirection: "row" }}>
+        <View
+          style={{
+            gap: 10,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text
             style={{
               fontFamily: "GilroyBold",
-              fontSize: 26,
+              fontSize: 22,
               color: "#EC8568",
             }}
           >
@@ -91,7 +88,7 @@ export default function Editar() {
           >
             <Image
               source={require("../assets/images/cadastrar-medicamento.png")}
-              style={{ width: 32, height: 32 }}
+              style={{ width: 25, height: 25 }}
             />
           </View>
         </View>
@@ -110,18 +107,12 @@ export default function Editar() {
 
           <View style={{ flexDirection: "row", gap: 7 }}>
             <TimeSelect id="horario" />
-
             <Select id="frequencia" options={listaFrequencias} />
           </View>
 
           <View style={{ flexDirection: "row", gap: 7 }}>
-            <Input
-              id="duracao"
-              label="Duração (dias)"
-              // style={{ width: 50 }}
-              width={150}
-            />
-            <Input id="dosagem" label="Dosagem" width={182} />
+            <Input id="duracao" label="Duração (dias)" width={150} />
+            <Input id="dosagem" label="Dosagem" width={158} />
           </View>
 
           <View style={{ gap: 10, alignItems: "center" }}>
