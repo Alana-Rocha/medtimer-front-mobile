@@ -6,7 +6,6 @@ import {
   medicamentoSchema,
 } from "@/constants/schemas/schemas";
 import { useMutationCadastraMedicamento } from "@/hooks/mutations/useMutationCadastraMedicamento";
-import { queryClient } from "@/service/queryClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 
@@ -26,22 +25,25 @@ export default function Editar() {
     },
   });
 
-  // console.log("Erros do formulário:", methods.formState.errors);
+  console.log("Erros do formulário:", methods.formState.errors);
 
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
   const submit: SubmitHandler<MedicamentoForm> = async (data) => {
-    await cadastrarMedicamento({
-      nome: data.nome,
-      descricao: data.descricao,
-      dosagem: data.dosagem,
-      duracao: data.duracao,
-      frequencia: data.frequencia,
-      horario: data.horario,
-    });
-    await queryClient.invalidateQueries(["medicamentos"]);
-    router.back();
+    console.log(data.horario);
+    console.log(data.frequencia);
+
+    // await cadastrarMedicamento({
+    //   nome: data.nome,
+    //   descricao: data.descricao,
+    //   dosagem: data.dosagem,
+    //   duracao: data.duracao,
+    //   frequencia: data.frequencia,
+    //   horario: data.horario,
+    // });
+    // await queryClient.invalidateQueries(["medicamentos"]);
+    // router.back();
   };
 
   const listaFrequencias = [
