@@ -1,4 +1,4 @@
-package com.lucasmendes.moodifypi
+package com.lucasmendes.medtimer
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

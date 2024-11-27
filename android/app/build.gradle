@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.lucasmendes.moodifypi'
+    namespace 'com.lucasmendes.medtimer'
     defaultConfig {
-        applicationId 'com.lucasmendes.moodifypi'
+        applicationId 'com.lucasmendes.medtimer'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
