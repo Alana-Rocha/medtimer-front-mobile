@@ -27,6 +27,8 @@ export default function Editar() {
     },
   });
 
+  // console.log("Erros do formulário:", methods.formState.errors);
+
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 

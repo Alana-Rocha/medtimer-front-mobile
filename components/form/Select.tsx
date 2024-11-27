@@ -22,6 +22,7 @@ export const Select = ({ id, options }: SelectProps) => {
         style={{
           // minWidth: 200,
           width: 182,
+          height: 57,
           paddingVertical: 10,
           paddingHorizontal: 15,
           backgroundColor: "#fff",
@@ -69,24 +70,32 @@ export const Select = ({ id, options }: SelectProps) => {
     <Controller
       control={control}
       name={id}
-      render={({ field }) => (
-        <SelectDropdown
-          data={options}
-          onSelect={(selectedItem: Item | undefined) =>
-            field.onChange(
-              typeof selectedItem === "object" && selectedItem?.value
-                ? Number(selectedItem.value)
-                : 0
-            )
-          }
-          renderButton={renderButton}
-          renderItem={renderItem}
-          dropdownStyle={{
-            padding: 2,
-            backgroundColor: "#E9ECEF",
-            borderRadius: 8,
-          }}
-        />
+      render={({ field, fieldState }) => (
+        <View>
+          <SelectDropdown
+            data={options}
+            onSelect={(selectedItem: Item | undefined) =>
+              field.onChange(
+                typeof selectedItem === "object" && selectedItem?.value
+                  ? Number(selectedItem.value)
+                  : 0
+              )
+            }
+            renderButton={renderButton}
+            renderItem={renderItem}
+            dropdownStyle={{
+              padding: 2,
+              backgroundColor: "#E9ECEF",
+              borderRadius: 8,
+            }}
+          />
+
+          {fieldState.error?.message && (
+            <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
+              {fieldState.error?.message}
+            </Text>
+          )}
+        </View>
       )}
     />
   );

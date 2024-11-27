@@ -8,7 +8,7 @@ export const horariosMedicamento = (
     DateTime.fromFormat(horaInicial, "HH:mm:ss").toFormat("HH:mm"),
   ];
 
-  for (let i = 0; i < frequencia; i++) {
+  for (let i = 0; i < frequencia - 1; i++) {
     const ultimaHora = horarios.at(-1) || "";
 
     const dataFormatada = DateTime.fromFormat(ultimaHora, "HH:mm")
