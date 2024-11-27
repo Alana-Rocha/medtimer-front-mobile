@@ -1,7 +1,8 @@
 import { ConsultaMedicamentoResponse } from "@/hooks/querys/useQueryConsultaMedicamentos";
+import { horariosMedicamento } from "@/utils/horariosMedicamento";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { forwardRef, useCallback, useImperativeHandle } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Portal, Text } from "react-native-paper";
 
 export type SheetRef = {
@@ -67,10 +68,10 @@ export const Sheet = forwardRef<SheetRef, SheetProps>(
                   {medicamento?.nome}
                 </Text>
                 <View>
-                  <Image
+                  {/* <Image
                     source={require("../assets/images/remedio.png")}
                     style={{ width: 25, height: 25 }}
-                  />
+                  /> */}
                 </View>
               </View>
 
@@ -116,7 +117,7 @@ export const Sheet = forwardRef<SheetRef, SheetProps>(
 
               <View style={styles.box}>
                 <Text variant="displayMedium" style={styles.text}>
-                  Horário:
+                  Hora Inícial:
                 </Text>
                 <Text
                   variant="displayMedium"
@@ -129,6 +130,22 @@ export const Sheet = forwardRef<SheetRef, SheetProps>(
                   {medicamento?.horario}
                 </Text>
               </View>
+
+              <View style={styles.box}>
+                <Text variant="displayMedium" style={styles.text}>
+                  Horários:
+                </Text>
+                <Text
+                  variant="displayMedium"
+                  style={{ ...styles.text, fontFamily: "GilroyBold" }}
+                >
+                  {horariosMedicamento(
+                    medicamento?.horario,
+                    medicamento.frequencia
+                  )}
+                </Text>
+              </View>
+
               {/* 
             <Button
               mode="contained"
