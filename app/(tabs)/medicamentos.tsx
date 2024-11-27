@@ -1,15 +1,26 @@
-import { SheetRef } from "@/components/BottomSheet";
-import { useQueryConsultaMedicamento } from "@/hooks/querys/useQueryConsultaMedicamentos";
+import { Sheet, SheetRef } from "@/components/BottomSheet";
+import {
+  ConsultaMedicamentoResponse,
+  useQueryConsultaMedicamento,
+} from "@/hooks/querys/useQueryConsultaMedicamentos";
 import { useRouter } from "expo-router";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { FAB, IconButton, Text } from "react-native-paper";
 
 export default function Medicamentos() {
+  const [selectedMedicamento, setSelectedMedicamento] =
+    useState<ConsultaMedicamentoResponse | null>(null);
+
   const router = useRouter();
   const { data: medicamentos, isLoading } = useQueryConsultaMedicamento();
   const bottomSheetRef = useRef<SheetRef>(null);
   console.log(medicamentos);
+
+  const handleOpenSheet = (medicamento: ConsultaMedicamentoResponse) => {
+    setSelectedMedicamento(medicamento);
+    bottomSheetRef.current?.open();
+  };
 
   return (
     <View style={styles.container}>
@@ -95,10 +106,7 @@ export default function Medicamentos() {
                       loading={isLoading}
                       disabled={isLoading}
                       size={20}
-                      onPress={() => {
-                        console.log("Abrindo BottomSheet...");
-                        bottomSheetRef.current?.open();
-                      }}
+                      onPress={() => handleOpenSheet(medicamento)}
                     />
                   </View>
                 </View>
@@ -116,7 +124,9 @@ export default function Medicamentos() {
         accessibilityLabel="Botão para adicionar um novo medicamento"
         onPress={() => router.push("/cadastrar-medicamento")}
       />
-      {/* <Sheet ref={bottomSheetRef} /> */}
+      {selectedMedicamento && (
+        <Sheet ref={bottomSheetRef} medicamento={selectedMedicamento} />
+      )}
     </View>
   );
 }
