@@ -16,6 +16,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -73,7 +74,7 @@ export default function RootLayout() {
             <QueryClientProvider client={queryClient}>
               <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="apresentacao" />
-                <Stack.Screen name="cadastro" />
+                <Stack.Screen name="cadastrar-usuario" />
                 <Stack.Screen
                   name="cadastrar-medicamento"
                   options={{ presentation: "modal" }}
@@ -85,6 +86,7 @@ export default function RootLayout() {
               </Stack>
             </QueryClientProvider>
           </ThemeProvider>
+          <Toast />
         </PaperProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

@@ -48,6 +48,15 @@ export default function Medicamentos() {
           }}
         >
           <View style={{ gap: 20 }}>
+            <Text
+              style={{
+                fontFamily: "GilroyBold",
+                fontSize: 25,
+                color: "#EC8568",
+              }}
+            >
+              Meus Medicamentos
+            </Text>
             {medicamentos?.map((medicamento) => (
               <View
                 style={{

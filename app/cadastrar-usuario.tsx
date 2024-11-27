@@ -8,6 +8,7 @@ import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 const Cadastro = () => {
   const router = useRouter();
@@ -31,6 +32,15 @@ const Cadastro = () => {
       nome: data.nome,
       senha: data.senha,
       dataNascimento: data.nascimento,
+    });
+    Toast.show({
+      type: "success",
+      text1: "Sucesso",
+      text2: "Cadastro realizado!",
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 30,
+      bottomOffset: 40,
     });
     router.push("/apresentacao");
   };

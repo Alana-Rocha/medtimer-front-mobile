@@ -14,6 +14,7 @@ import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Image, View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 export default function Editar() {
   const router = useRouter();
@@ -26,8 +27,6 @@ export default function Editar() {
     },
   });
 
-  // console.log("Erros do formulário:", methods.formState.errors);
-
   const { mutateAsync: cadastrarMedicamento, isLoading } =
     useMutationCadastraMedicamento();
 
@@ -39,6 +38,15 @@ export default function Editar() {
       duracao: data.duracao,
       frequencia: data.frequencia,
       horario: data.horario,
+    });
+    Toast.show({
+      type: "success",
+      text1: "Sucesso",
+      text2: "Medicamento cadastrado com sucesso!",
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 30,
+      bottomOffset: 40,
     });
     await queryClient.invalidateQueries(["medicamentos"]);
     router.back();
@@ -75,7 +83,7 @@ export default function Editar() {
           <Text
             style={{
               fontFamily: "GilroyBold",
-              fontSize: 22,
+              fontSize: 25,
               color: "#EC8568",
             }}
           >

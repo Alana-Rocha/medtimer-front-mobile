@@ -1,5 +1,7 @@
 import { api } from "@/service/api";
+import { ApiError } from "@/types/error";
 import { useMutation } from "@tanstack/react-query";
+import Toast from "react-native-toast-message";
 import { useMutationLogin } from "./useMutationLogin";
 
 type UsuarioRequest = {
@@ -22,6 +24,15 @@ export const useMutationCadastraUsuario = () => {
     onSuccess: async (data) => {
       await login({ email: data.email, senha: data.senha });
     },
-    onError: (error) => console.log(error),
+    onError: (error: ApiError) => {
+      const message =
+        error.response?.data?.message ||
+        "Ocorreu um erro ao cadastrar usuário.";
+      Toast.show({
+        type: "error",
+        text1: "Erro ao cadastrar usuário",
+        text2: message,
+      });
+    },
   });
 };
