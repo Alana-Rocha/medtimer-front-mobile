@@ -9,7 +9,6 @@ import {
 } from "@react-navigation/native";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
-import * as Notifications from "expo-notifications";
 import { Href, router, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
@@ -19,13 +18,6 @@ import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
-
-async function requestPermissions() {
-  const { status } = await Notifications.requestPermissionsAsync();
-  if (status !== "granted") {
-    alert("Você precisa permitir notificações para que isso funcione!");
-  }
-}
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -56,8 +48,6 @@ export default function RootLayout() {
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
-
-      await requestPermissions();
     }
   }, [appIsReady]);
 

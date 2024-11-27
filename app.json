@@ -28,7 +28,7 @@
       "output": "static",
       "favicon": "./assets/images/logo.png"
     },
-    "plugins": ["expo-router", "expo-build-properties"],
+    "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
     }
