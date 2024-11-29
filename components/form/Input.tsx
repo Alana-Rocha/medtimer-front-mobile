@@ -35,7 +35,7 @@ export const Input = ({
             error={invalid}
             onBlur={field.onBlur}
             label={label}
-            value={field.value}
+            value={field.value || ""}
             secureTextEntry={secureTextEntry && !showPassword}
             outlineColor="#31658B"
             style={{ width: width, backgroundColor: "#fff" }}
@@ -44,7 +44,7 @@ export const Input = ({
             right={
               secureTextEntry && (
                 <TextInput.Icon
-                  icon={showPassword ? "eye-off" : "eye"} 
+                  icon={showPassword ? "eye-off" : "eye"}
                   color="#66B4B0"
                   onPress={handleTogglePassword}
                 />
