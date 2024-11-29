@@ -2,17 +2,17 @@ import { Input } from "@/components/form/Input";
 import { useQueryConsultaUsuario } from "@/hooks/querys/useQueryConsultaUsuario";
 import { useAuthStore } from "@/hooks/stores/AuthStore";
 import { capitalizeText } from "@/utils/capitalize";
-import { useRouter } from "expo-router";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { ActivityIndicator, View } from "react-native";
-import { Avatar, Button, Text } from "react-native-paper";
+import { View } from "react-native";
+import { ActivityIndicator, Avatar, Button, Text } from "react-native-paper";
 
 export default function Perfil() {
-  const router = useRouter();
+  // const router = useRouter();
   const { data: usuarios, isFetching } = useQueryConsultaUsuario();
   const methods = useForm();
   const userAuth = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
 
   const user = usuarios?.find((usuario) => usuario?.email === userAuth?.sub);
 
@@ -73,7 +73,7 @@ export default function Perfil() {
               textColor="#fff"
               buttonColor="#a32121"
               style={{ borderRadius: 4, padding: 4 }}
-              onPress={() => router.push("/")}
+              onPress={async () => await logout()}
             >
               Sair
             </Button>

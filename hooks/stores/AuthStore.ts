@@ -1,4 +1,5 @@
 import { api } from "@/service/api";
+import { queryClient } from "@/service/queryClient";
 import { getData, removeData } from "@/service/storage";
 import { router } from "expo-router";
 import { jwtDecode } from "jwt-decode";
@@ -30,6 +31,7 @@ export const useAuthStore = create<AuthStoreType>((set, get) => ({
   },
   logout: async () => {
     await removeData("token");
+    queryClient.clear();
     router.push("/");
     set(() => ({ user: undefined }));
   },

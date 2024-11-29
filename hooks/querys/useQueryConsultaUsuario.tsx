@@ -18,7 +18,7 @@ export const useQueryConsultaUsuario = (enabled?: boolean) => {
     enabled,
     refetchOnWindowFocus: true,
     retry: false,
-    // staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10,
     onSuccess: (user) => {
       if (!user) router.push("/");
       return user;
