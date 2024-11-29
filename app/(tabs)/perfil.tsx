@@ -1,6 +1,7 @@
 import { Input } from "@/components/form/Input";
 import { useQueryConsultaUsuario } from "@/hooks/querys/useQueryConsultaUsuario";
 import { useAuthStore } from "@/hooks/stores/AuthStore";
+import { capitalizeText } from "@/utils/capitalize";
 import { useRouter } from "expo-router";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -62,7 +63,7 @@ export default function Perfil() {
             variant="displayLarge"
             style={{ fontFamily: "GilroyBold", fontSize: 30, color: "#60FFCB" }}
           >
-            {user.nome}
+            {capitalizeText(user.nome)}
           </Text>
 
           <View style={{ gap: 10 }}>

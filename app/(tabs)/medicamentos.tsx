@@ -67,7 +67,7 @@ export default function Medicamentos() {
                   padding: 7,
                   borderRadius: 5,
                 }}
-                key={medicamento.nome}
+                key={medicamento.id}
               >
                 <View
                   style={{
